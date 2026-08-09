@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Total solar eclipse 12 Aug 2026 — where to go in Spain, timings, and a live simulator.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌒</text></svg>">
 <title>Totalidad · 12.8.2026</title>
 <style>
@@ -86,7 +87,7 @@
   /* ─── Fact strip ─── */
   .strip{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:1px;
     background:var(--line); border:1px solid var(--line); margin-top:56px}
-  .strip>div{background:var(--panel); padding:18px 16px}
+  .strip>div{background:var(--panel); padding:18px 16px; text-align:start}
   .strip .k{font-family:var(--mono); font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--faint)}
   [dir="rtl"] .strip .k{letter-spacing:.03em; font-size:12px}
   .strip .v{font-family:var(--serif); font-size:26px; color:var(--corona); margin-top:6px; font-variant-numeric:tabular-nums}
@@ -160,7 +161,98 @@
   .credit{margin-top:34px; padding-top:22px; border-top:1px solid var(--line);
     font-family:var(--mono); font-size:13px; letter-spacing:.06em}
   .credit a{color:var(--solar); font-weight:600}
-  @media(max-width:640px){ .srcs{columns:1} .seat{grid-template-columns:1fr} }
+
+  /* ─── Geolocation panel ─── */
+  .geo{border:1px solid var(--line); background:var(--panel-2); padding:22px 24px; margin-top:30px}
+  .geo-row{display:flex; flex-wrap:wrap; gap:10px; align-items:stretch}
+  .geo button{font-family:var(--sans); font-size:15px; font-weight:600;
+    background:var(--solar); border:1px solid var(--solar); color:#171004; padding:12px 20px; cursor:pointer}
+  .geo button:hover{background:var(--corona); border-color:var(--corona)}
+  .geo button[disabled]{opacity:.55; cursor:default}
+  .geo button.ghost{background:none; border-color:var(--line); color:var(--solar)}
+  .geo button.ghost:hover{background:var(--night); border-color:var(--solar-deep)}
+  .geo input{flex:1; min-width:200px; font-family:var(--mono); font-size:13px;
+    background:var(--night); border:1px solid var(--line); color:var(--text); padding:12px 14px;
+    direction:ltr; text-align:start}
+  .geo input::placeholder{color:var(--faint)}
+  .geo-out{margin-top:16px; font-size:15px; color:var(--muted); line-height:1.7}
+  .geo-out .verdict{font-family:var(--serif); font-size:23px; display:block; margin-bottom:8px}
+  .geo-out .verdict.out{color:var(--danger)}
+  .geo-out .verdict.in{color:var(--good)}
+  .geo-out .coords{font-family:var(--mono); font-size:13px; color:var(--faint); direction:ltr; unicode-bidi:isolate}
+
+  /* ─── Map links ─── */
+  .links{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
+  .links a{font-size:13.5px; font-weight:600; border:1px solid var(--line);
+    background:var(--night); padding:8px 14px; color:var(--solar)}
+  .links a:hover{border-color:var(--solar-deep); text-decoration:none; background:var(--panel-2)}
+  .links a.go{background:var(--solar); color:#171004; border-color:var(--solar)}
+  .links a.go:hover{background:var(--corona); border-color:var(--corona)}
+
+  /* ─── Hebrew never reads well in monospace: swap to sans in RTL ─── */
+  [dir="rtl"] .eyebrow,
+  [dir="rtl"] .strip .k,
+  [dir="rtl"] .hero .sub,
+  [dir="rtl"] th,
+  [dir="rtl"] .seat .meta,
+  [dir="rtl"] .figcap,
+  [dir="rtl"] .seat .dur small,
+  [dir="rtl"] .seat h3 .tag,
+  [dir="rtl"] .credit,
+  [dir="rtl"] .readout{
+    font-family:var(--sans); text-transform:none; letter-spacing:.01em;
+  }
+  [dir="rtl"] .hero .sub{font-size:16px; line-height:1.85; font-weight:500; color:var(--corona)}
+  [dir="rtl"] .strip .k{font-size:12.5px; color:var(--muted)}
+  [dir="rtl"] .eyebrow{font-size:13px; font-weight:600}
+  [dir="rtl"] .figcap{font-size:13.5px; line-height:1.7}
+  [dir="rtl"] .seat .meta{font-size:14px}
+  [dir="rtl"] th{font-size:12.5px; font-weight:600}
+  .hero .sub{line-height:1.9; color:var(--corona);
+    text-shadow:0 2px 16px rgba(5,6,12,.95), 0 0 34px rgba(5,6,12,.85)}
+  .strip .v small{display:block; margin-top:4px}
+  #countdown{direction:ltr; unicode-bidi:isolate}
+
+  /* ─── Mobile ─── */
+  @media(max-width:700px){
+    .wrap{padding:0 16px}
+    section{padding:52px 0}
+    h2{font-size:clamp(23px,6.2vw,32px)}
+    p{max-width:none}
+
+    .langbar{top:10px; inset-inline-end:10px; padding:3px}
+    .langbar button{font-size:11.5px; padding:5px 9px}
+
+    .hero{min-height:auto; padding-top:88px}
+    .hero-disc{top:104px; width:min(200px,50vw); height:min(200px,50vw);
+      box-shadow:0 0 26px 8px rgba(240,234,219,.5), 0 0 84px 28px rgba(240,234,219,.18),
+                 0 0 190px 64px rgba(242,169,59,.08)}
+    .hero-inner{padding:0 16px 40px}
+    .hero h1{font-size:clamp(36px,12vw,64px); letter-spacing:.02em}
+    .hero .sub{font-size:12.5px; letter-spacing:.05em; margin-top:16px}
+    [dir="rtl"] .hero .sub{font-size:14.5px; letter-spacing:0}
+
+    .strip{grid-template-columns:1fr; margin-top:36px}
+    .strip>div{padding:14px 16px}
+    .strip .v{font-size:22px}
+
+    .callout{padding:18px}
+    .geo{padding:18px}
+    .geo button{width:100%}
+    .seat{grid-template-columns:1fr; padding:18px; gap:10px}
+    .seat .dur{font-size:26px}
+    .seat .dur small{display:inline; margin-inline-start:8px; margin-top:0}
+    [dir="rtl"] .seat .dur small{text-align:start}
+    .srcs{columns:1}
+
+    .sim-controls{gap:10px; padding:12px}
+    .sim-controls button{width:100%; min-width:0}
+    #tslider{flex:1 1 100%}
+    .readout{white-space:normal; font-size:12.5px}
+
+    ul.check li{font-size:15px}
+    th,td{padding:11px 12px; font-size:14px}
+  }
 </style>
 </head>
 <body>
@@ -202,6 +294,18 @@
   </div>
   <p class="muted" data-i18n="s1-p2">This is a once-in-a-lifetime alignment for Spain — the last total eclipse visible from the
   peninsula was in 1905, and this one happens at sunset with the Sun hanging just over the western horizon.</p>
+
+  <div class="geo">
+    <p style="margin:0 0 14px" data-i18n="geo-lead"><strong>Check any spot:</strong> use your device location, or paste a Google Maps
+    link / coordinates for where you plan to be on eclipse day.</p>
+    <div class="geo-row">
+      <button type="button" id="geobtn" data-i18n="geo-btn">📍 Use my location</button>
+      <input type="text" id="geoinput" inputmode="text" data-i18n-ph="geo-ph"
+             placeholder="Paste Google Maps link or 42.4351, 0.0808">
+      <button type="button" id="geocheck" class="ghost" data-i18n="geo-check">Check</button>
+    </div>
+    <div class="geo-out" id="geoout" data-i18n="geo-idle">Everything is computed in your browser — no location data is sent anywhere.</div>
+  </div>
 </div></section>
 
 <section id="map"><div class="wrap">
@@ -278,30 +382,42 @@
 
   <div class="seats">
     <div class="seat pick">
-      <div class="dur">~1:00<small data-i18n="dur-l">totality</small></div>
+      <div class="dur">~1:10<small data-i18n="dur-l">totality</small></div>
       <div>
         <h3><span data-i18n="seat1-h">Monegros steppe — Bujaraloz / Peñalba</span><span class="tag" data-i18n="seat1-tag">My pick</span></h3>
         <p data-i18n="seat1-p">A semi-desert plain with horizons like the sea — the best 5°-Sun country in Aragón. Solidly
         inside the band, empty roads, and the driest sky forecast of the region.</p>
         <div class="meta" data-i18n="seat1-m">Via Barbastro → Sariñena, A-131 · ~135 km · ~1 h 50 m from Boltaña · forecast <b>0% cloud</b></div>
+        <div class="links">
+          <a class="go" data-dest="41.4967,-0.1494" href="https://www.google.com/maps/dir/?api=1&amp;destination=41.4967%2C-0.1494&amp;travelmode=driving" target="_blank" rel="noopener" data-i18n="lnk-dir">Directions</a>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=41.4967%2C-0.1494" target="_blank" rel="noopener" data-i18n="lnk-view">View on map</a>
+        </div>
       </div>
     </div>
     <div class="seat">
-      <div class="dur">~1:20<small data-i18n="dur-l2">totality</small></div>
+      <div class="dur">~1:25<small data-i18n="dur-l2">totality</small></div>
       <div>
-        <h3><span data-i18n="seat2-h">Zaragoza countryside (west of the city)</span></h3>
-        <p data-i18n="seat2-p">The longest totality within reach — Zaragoza province logs 1:10–1:25. Skip the city itself
-        (crowds, buildings): pick an open field or ridge west of it with a clear WNW view.</p>
-        <div class="meta" data-i18n="seat2-m">Via Huesca, A-23 south · ~165 km · ~2 h · forecast <b>0% cloud</b></div>
+        <h3><span data-i18n="seat2-h">La Muela plateau (west of Zaragoza)</span></h3>
+        <p data-i18n="seat2-p">The longest totality within reach — Zaragoza province logs 1:10–1:25. An open wind-farm
+        plateau at ~600 m with nothing between you and the western horizon. Skip the city itself: crowds and buildings.</p>
+        <div class="meta" data-i18n="seat2-m">Via Huesca, A-23 → A-2 · ~215 km · ~2 h 30 m · forecast <b>0% cloud</b></div>
+        <div class="links">
+          <a class="go" data-dest="41.5836,-1.0967" href="https://www.google.com/maps/dir/?api=1&amp;destination=41.5836%2C-1.0967&amp;travelmode=driving" target="_blank" rel="noopener" data-i18n="lnk-dir2">Directions</a>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=41.5836%2C-1.0967" target="_blank" rel="noopener" data-i18n="lnk-view2">View on map</a>
+        </div>
       </div>
     </div>
     <div class="seat">
-      <div class="dur">~0:40<small data-i18n="dur-l3">totality</small></div>
+      <div class="dur">~0:55<small data-i18n="dur-l3">totality</small></div>
       <div>
         <h3><span data-i18n="seat3-h">Sariñena (closest safe option)</span></h3>
-        <p data-i18n="seat3-p">The shortest drive that still buys real darkness — about 30 km inside the limit. Flat
+        <p data-i18n="seat3-p">The shortest drive that still buys real darkness — about 28 km inside the limit. Flat
         Cinca-Alcanadre plains, open west horizon. Fine if you're short on time; the Monegros is better.</p>
         <div class="meta" data-i18n="seat3-m">Via Barbastro, A-131 · ~95 km · ~1 h 20 m · forecast <b>0% cloud</b></div>
+        <div class="links">
+          <a class="go" data-dest="41.7917,-0.1583" href="https://www.google.com/maps/dir/?api=1&amp;destination=41.7917%2C-0.1583&amp;travelmode=driving" target="_blank" rel="noopener" data-i18n="lnk-dir3">Directions</a>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=41.7917%2C-0.1583" target="_blank" rel="noopener" data-i18n="lnk-view3">View on map</a>
+        </div>
       </div>
     </div>
   </div>
@@ -433,7 +549,7 @@
       he:'ליקוי חמה מלא · יום רביעי <b>12 באוגוסט 2026</b> · ליקוי מלא מעל צפון ספרד בשעה <b>≈ 20:30</b> שעון מקומי — הראשון בספרד מאז 1905',
       es:'Eclipse solar total · miércoles <b>12 de agosto de 2026</b> · totalidad sobre el norte de España a las <b>≈ 20:30</b> hora local — el primero en España desde 1905'},
     k1:{en:'Countdown to totality', he:'ספירה לאחור לליקוי המלא', es:'Cuenta atrás a la totalidad'},
-    k2:{en:'Your location (your pin)', he:'המיקום שלך (מהנעצת שלך)', es:'Tu ubicación (tu pin)'},
+    k2:{en:'Your location', he:'המיקום שלך', es:'Tu ubicación'},
     v2:{en:'Boltaña · Pyrenees', he:'בולטניה · הפירנאים', es:'Boltaña · Pirineos'},
     k3:{en:'Coverage at Boltaña', he:'כיסוי בבולטניה', es:'Cobertura en Boltaña'},
     v3s:{en:'NOT total', he:'לא מלא', es:'NO total'},
@@ -446,7 +562,7 @@
     's1-h2':{en:'You are about 45 km too far north', he:'אתם כ־45 ק״מ צפונית מדי', es:'Estás unos 45 km demasiado al norte'},
     's1-p1':{
       en:'Your pin puts you at <strong>Boltaña / Aínsa in the Sobrarbe</strong>, high in the Pyrenees — and the <em>northern</em> limit of totality passes south of you, roughly through Huesca city toward Lleida. From your valley the Moon will cover <strong>~99.5% of the Sun</strong> — and that is still a completely different event from 100%. No corona, no stars, no darkness. Totality is binary: inside the band or you missed it.',
-      he:'הנעצת שלכם מציבה אתכם ב<strong>בולטניה / אאינסה שבסוברארבה</strong>, גבוה בפירנאים — והגבול ה<em>צפוני</em> של הליקוי המלא עובר מדרום לכם, בערך דרך העיר ווסקה לכיוון ייִדה. מהעמק שלכם הירח יכסה <strong>~99.5% מהשמש</strong> — וזה עדיין אירוע שונה לחלוטין מ־100%. בלי עטרה (קורונה), בלי כוכבים, בלי חושך. ליקוי מלא הוא בינארי: בתוך הרצועה — או שפספסתם.',
+      he:'המיקום שלכם הוא <strong>בולטניה / אאינסה שבסוברארבה</strong>, גבוה בפירנאים — והגבול ה<em>צפוני</em> של הליקוי המלא עובר מדרום לכם, בערך דרך העיר ווסקה לכיוון ליידה. מהעמק שלכם הירח יכסה <strong>~99.5% מהשמש</strong> — וזה עדיין אירוע שונה לחלוטין מ־100%. בלי עטרה (קורונה), בלי כוכבים, בלי חושך. ליקוי מלא הוא בינארי: או שאתם בתוך הרצועה — או שפספסתם.',
       es:'Tu pin te sitúa en <strong>Boltaña / Aínsa, en el Sobrarbe</strong>, en pleno Pirineo — y el límite <em>norte</em> de la totalidad pasa al sur de ti, aproximadamente por la ciudad de Huesca hacia Lleida. Desde tu valle la Luna cubrirá <strong>~99,5% del Sol</strong> — y aun así es un evento completamente distinto del 100%. Sin corona, sin estrellas, sin oscuridad. La totalidad es binaria: dentro de la banda o te la perdiste.'},
     's1-call':{
       en:'<strong>The fix:</strong> drive south, out of the mountains and into the Ebro plains. About 1½–2 hours puts you deep inside the band on the flat Monegros steppe — which also solves your second problem: a Sun only 5° high needs a table-flat western horizon, and a Pyrenean valley can\'t give you that.',
@@ -504,20 +620,20 @@
       en:'Via Barbastro → Sariñena, A-131 · ~135 km · ~1 h 50 m from Boltaña · forecast <b>0% cloud</b>',
       he:'דרך ברבסטרו ← סריניינה, A-131 · ‎~135 ק״מ · ‎~1:50 שע׳ מבולטניה · תחזית <b>0% עננות</b>',
       es:'Vía Barbastro → Sariñena, A-131 · ~135 km · ~1 h 50 m desde Boltaña · pronóstico <b>0% nubes</b>'},
-    'seat2-h':{en:'Zaragoza countryside (west of the city)', he:'סביבת סרגוסה (ממערב לעיר)', es:'Campo de Zaragoza (al oeste de la ciudad)'},
+    'seat2-h':{en:'La Muela plateau (west of Zaragoza)', he:'רמת לה מואלה (ממערב לסרגוסה)', es:'Meseta de La Muela (al oeste de Zaragoza)'},
     'seat2-p':{
-      en:'The longest totality within reach — Zaragoza province logs 1:10–1:25. Skip the city itself (crowds, buildings): pick an open field or ridge west of it with a clear WNW view.',
-      he:'הליקוי הארוך ביותר בהישג יד — מחוז סרגוסה רושם 1:10–1:25. דלגו על העיר עצמה (המונים, בניינים): בחרו שדה פתוח או רכס ממערב לה עם מבט פנוי למערב־צפון־מערב.',
-      es:'La totalidad más larga a tu alcance — la provincia de Zaragoza registra 1:10–1:25. Evita la ciudad (multitudes, edificios): elige un campo abierto o un cerro al oeste con vista despejada al ONO.'},
+      en:'The longest totality within reach — Zaragoza province logs 1:10–1:25. An open wind-farm plateau at ~600 m with nothing between you and the western horizon. Skip the city itself: crowds and buildings.',
+      he:'הליקוי הארוך ביותר בהישג יד — מחוז סרגוסה רושם 1:10–1:25. רמה פתוחה של חוות רוח בגובה ~600 מ׳, בלי כלום בינכם לבין האופק המערבי. דלגו על העיר עצמה: המונים ובניינים.',
+      es:'La totalidad más larga a tu alcance — la provincia de Zaragoza registra 1:10–1:25. Una meseta abierta de parques eólicos a ~600 m, sin nada entre tú y el horizonte oeste. Evita la ciudad: multitudes y edificios.'},
     'seat2-m':{
-      en:'Via Huesca, A-23 south · ~165 km · ~2 h · forecast <b>0% cloud</b>',
-      he:'דרך ווסקה, A-23 דרומה · ‎~165 ק״מ · ‎~שעתיים · תחזית <b>0% עננות</b>',
-      es:'Vía Huesca, A-23 sur · ~165 km · ~2 h · pronóstico <b>0% nubes</b>'},
+      en:'Via Huesca, A-23 → A-2 · ~215 km · ~2 h 30 m · forecast <b>0% cloud</b>',
+      he:'דרך ווסקה, A-23 ← A-2 · ‎~215 ק״מ · ‎~2:30 שע׳ · תחזית <b>0% עננות</b>',
+      es:'Vía Huesca, A-23 → A-2 · ~215 km · ~2 h 30 m · pronóstico <b>0% nubes</b>'},
     'seat3-h':{en:'Sariñena (closest safe option)', he:'סריניינה (האופציה הבטוחה הקרובה ביותר)', es:'Sariñena (la opción segura más cercana)'},
     'seat3-p':{
-      en:'The shortest drive that still buys real darkness — about 30 km inside the limit. Flat Cinca-Alcanadre plains, open west horizon. Fine if you\'re short on time; the Monegros is better.',
-      he:'הנסיעה הקצרה ביותר שעדיין קונה חושך אמיתי — כ־30 ק״מ בתוך הגבול. מישורי סינקה-אלקנדרה השטוחים, אופק מערבי פתוח. בסדר אם אין זמן; מונגרוס עדיף.',
-      es:'El trayecto más corto que aún compra oscuridad real — unos 30 km dentro del límite. Llanuras del Cinca-Alcanadre, horizonte oeste abierto. Vale si vas justo de tiempo; los Monegros son mejores.'},
+      en:'The shortest drive that still buys real darkness — about 28 km inside the limit. Flat Cinca-Alcanadre plains, open west horizon. Fine if you\'re short on time; the Monegros is better.',
+      he:'הנסיעה הקצרה ביותר שעדיין קונה חושך אמיתי — כ־28 ק״מ בתוך הגבול. מישורי סינקה-אלקנדרה השטוחים, אופק מערבי פתוח. בסדר אם אין זמן; מונגרוס עדיף.',
+      es:'El trayecto más corto que aún compra oscuridad real — unos 28 km dentro del límite. Llanuras del Cinca-Alcanadre, horizonte oeste abierto. Vale si vas justo de tiempo; los Monegros son mejores.'},
     'seat3-m':{
       en:'Via Barbastro, A-131 · ~95 km · ~1 h 20 m · forecast <b>0% cloud</b>',
       he:'דרך ברבסטרו, A-131 · ‎~95 ק״מ · ‎~1:20 שע׳ · תחזית <b>0% עננות</b>',
@@ -597,9 +713,61 @@
     'foot-h':{en:'Sources &amp; live references', he:'מקורות והפניות', es:'Fuentes y referencias'},
     'foot-note':{
       en:'Cloud forecast: Open-Meteo, retrieved 9 Aug 2026 · Location from your map pin · Sun position computed for 20:30 CEST',
-      he:'תחזית עננות: Open-Meteo, נשלף 9.8.2026 · מיקום מהנעצת שלכם במפה · מיקום השמש חושב ל־20:30 שעון מקומי',
+      he:'תחזית עננות: Open-Meteo, נשלף 9.8.2026 · מיקום לפי הסימון שלכם במפה · מיקום השמש חושב ל־20:30 שעון מקומי',
       es:'Pronóstico de nubes: Open-Meteo, 9 ago 2026 · Ubicación de tu pin en el mapa · Posición solar calculada para las 20:30 CEST'},
-    credit:{en:'Made by', he:'נוצר על ידי', es:'Creado por'}
+    credit:{en:'Made by', he:'נוצר על ידי', es:'Creado por'},
+
+    'geo-lead':{
+      en:'<strong>Check any spot:</strong> use your device location, or paste a Google Maps link / coordinates for where you plan to be on eclipse day.',
+      he:'<strong>בדקו כל נקודה:</strong> השתמשו במיקום המכשיר, או הדביקו קישור מ־Google Maps או קואורדינטות של המקום שבו אתם מתכננים להיות ביום הליקוי.',
+      es:'<strong>Comprueba cualquier punto:</strong> usa la ubicación de tu dispositivo, o pega un enlace de Google Maps o unas coordenadas del lugar donde piensas estar el día del eclipse.'},
+    'geo-btn':{en:'📍 Use my location', he:'📍 השתמש במיקום שלי', es:'📍 Usar mi ubicación'},
+    'geo-check':{en:'Check', he:'בדוק', es:'Comprobar'},
+    'geo-ph':{en:'Paste Google Maps link or 42.4351, 0.0808', he:'הדביקו קישור Google Maps או 42.4351, 0.0808', es:'Pega un enlace de Google Maps o 42.4351, 0.0808'},
+    'geo-idle':{
+      en:'Everything is computed in your browser — no location data is sent anywhere.',
+      he:'הכול מחושב בדפדפן שלכם — שום מידע מיקום לא נשלח לשום מקום.',
+      es:'Todo se calcula en tu navegador — no se envía ningún dato de ubicación.'},
+    'lnk-dir':{en:'🚗 Directions', he:'🚗 הוראות הגעה', es:'🚗 Cómo llegar'},
+    'lnk-dir2':{en:'🚗 Directions', he:'🚗 הוראות הגעה', es:'🚗 Cómo llegar'},
+    'lnk-dir3':{en:'🚗 Directions', he:'🚗 הוראות הגעה', es:'🚗 Cómo llegar'},
+    'lnk-view':{en:'View on map', he:'הצג במפה', es:'Ver en el mapa'},
+    'lnk-view2':{en:'View on map', he:'הצג במפה', es:'Ver en el mapa'},
+    'lnk-view3':{en:'View on map', he:'הצג במפה', es:'Ver en el mapa'}
+  };
+  var GEO = {
+    locating:{en:'Locating…', he:'מאתר…', es:'Localizando…'},
+    denied:{en:'Location permission denied. You can paste a Google Maps link or coordinates instead.', he:'ההרשאה למיקום נדחתה. אפשר במקום זאת להדביק קישור Google Maps או קואורדינטות.', es:'Permiso de ubicación denegado. Puedes pegar un enlace de Google Maps o coordenadas.'},
+    unavail:{en:'Your browser could not provide a location. Try pasting coordinates instead.', he:'הדפדפן לא הצליח לספק מיקום. נסו להדביק קואורדינטות.', es:'Tu navegador no pudo dar una ubicación. Prueba a pegar coordenadas.'},
+    badinput:{en:'Could not read coordinates from that. Short goo.gl links can\'t be opened here — open the link in Maps, then copy the full URL from the address bar, or long-press the spot in Maps and copy the numbers.', he:'לא הצלחתי לקרוא קואורדינטות מזה. קישורים מקוצרים (goo.gl) לא ניתנים לפתיחה כאן — פתחו את הקישור ב־Maps והעתיקו את הכתובת המלאה, או לחצו לחיצה ארוכה על הנקודה ב־Maps והעתיקו את המספרים.', es:'No pude leer coordenadas de eso. Los enlaces cortos (goo.gl) no se pueden abrir aquí — abre el enlace en Maps y copia la URL completa, o mantén pulsado el punto en Maps y copia los números.'},
+    outside:{en:'Outside the path of totality', he:'מחוץ לרצועת הליקוי המלא', es:'Fuera de la banda de totalidad'},
+    inside:{en:'Inside the path of totality', he:'בתוך רצועת הליקוי המלא', es:'Dentro de la banda de totalidad'},
+    edge:{en:'Right on the edge — risky', he:'ממש על הגבול — מסוכן', es:'Justo en el borde — arriesgado'},
+    outN:{
+      en:'You are about <b>{d} km north</b> of the band. Drive <b>south</b> — the seats below are all inside.',
+      he:'אתם כ־<b>{d} ק״מ צפונית</b> לרצועה. סעו <b>דרומה</b> — כל המושבים למטה נמצאים בפנים.',
+      es:'Estás a unos <b>{d} km al norte</b> de la banda. Conduce hacia el <b>sur</b> — los asientos de abajo están todos dentro.'},
+    outS:{
+      en:'You are about <b>{d} km south</b> of the band. Drive <b>north</b> — the seats below are all inside.',
+      he:'אתם כ־<b>{d} ק״מ דרומית</b> לרצועה. סעו <b>צפונה</b> — כל המושבים למטה נמצאים בפנים.',
+      es:'Estás a unos <b>{d} km al sur</b> de la banda. Conduce hacia el <b>norte</b> — los asientos de abajo están todos dentro.'},
+    inTxt:{
+      en:'Estimated totality here: <b>~{s}</b>. You are ~{d} km from the nearest edge. Still check that your western horizon is clear — the Sun is only ~5° up.',
+      he:'ליקוי מלא משוער כאן: <b>~{s}</b>. אתם כ־{d} ק״מ מהקצה הקרוב. ודאו שהאופק המערבי פנוי — השמש בגובה ~5° בלבד.',
+      es:'Totalidad estimada aquí: <b>~{s}</b>. Estás a ~{d} km del borde más cercano. Comprueba que tu horizonte oeste esté despejado — el Sol está a solo ~5°.'},
+    edgeTxt:{
+      en:'Only ~{d} km inside the edge, so totality would last barely seconds and lunar terrain can cancel it entirely. Go deeper into the band.',
+      he:'רק כ־{d} ק״מ בתוך הגבול — הליקוי המלא יימשך שניות בודדות, ותוואי הירח עלול לבטל אותו לגמרי. היכנסו עמוק יותר לרצועה.',
+      es:'Solo ~{d} km dentro del borde, así que la totalidad duraría apenas segundos y el relieve lunar puede anularla del todo. Métete más adentro de la banda.'},
+    faraway:{
+      en:'That point is outside the Spanish section of the path this page covers — the numbers here only apply over Iberia.',
+      he:'הנקודה הזו מחוץ למקטע הספרדי של המסלול שהעמוד הזה מכסה — המספרים כאן תקפים רק מעל חצי האי האיברי.',
+      es:'Ese punto está fuera del tramo español de la trayectoria que cubre esta página — los números de aquí solo valen sobre Iberia.'},
+    approx:{
+      en:'Approximate — confirm your exact spot on the official IGN map before committing.',
+      he:'הערכה בלבד — ודאו את הנקודה המדויקת במפת ה־IGN הרשמית לפני שסוגרים.',
+      es:'Aproximado — confirma tu punto exacto en el mapa oficial del IGN antes de decidir.'},
+    updated:{en:'Directions below now start from this point.', he:'ההוראות למטה יוצאות עכשיו מהנקודה הזו.', es:'Las indicaciones de abajo ahora parten de este punto.'}
   };
   var UI = {
     play:{en:'▶ Play', he:'▶ הפעלה', es:'▶ Reproducir'},
@@ -630,9 +798,15 @@
       var k2=tnodes[j].getAttribute('data-i18n-text');
       if(I18N[k2] && I18N[k2][l]!=null) tnodes[j].textContent=I18N[k2][l];
     }
+    var pnodes=document.querySelectorAll('[data-i18n-ph]');
+    for(var p=0;p<pnodes.length;p++){
+      var k3=pnodes[p].getAttribute('data-i18n-ph');
+      if(I18N[k3] && I18N[k3][l]!=null) pnodes[p].placeholder=I18N[k3][l];
+    }
     var btns=document.querySelectorAll('.langbar button');
     for(var b=0;b<btns.length;b++) btns[b].classList.toggle('on', btns[b].getAttribute('data-lang')===l);
     syncSim();
+    if(lastFix) renderGeo(lastFix.lat, lastFix.lon);
   }
 
   /* ═══ Countdown to totality: 12 Aug 2026 20:30 CEST = 18:30 UTC ═══ */
@@ -805,6 +979,124 @@
     var t=e.target.closest('button[data-lang]');
     if(t) applyLang(t.getAttribute('data-lang'));
   });
+
+  /* ═══ Where is the band? ═══
+     Approximate northern / southern limits of the 12 Aug 2026 umbral path over Iberia,
+     as [longitude, latitude] anchors. Calibrated against published city results:
+     Bilbao, Burgos, Zaragoza, Lleida (25 s) and Segovia inside; Pamplona, Madrid,
+     Boltaña outside; Huesca sitting on the northern limit. Schematic, not survey-grade. */
+  var LIM_N = [[-9.0,44.55],[-7.0,44.20],[-5.0,43.85],[-3.5,43.55],[-2.93,43.40],
+               [-1.645,42.78],[-0.41,42.17],[0.08,41.95],[0.63,41.72],[2.0,41.20],[3.5,40.70]];
+  var LIM_S = [[-9.0,41.80],[-7.0,41.55],[-5.0,41.20],[-4.12,40.90],[-3.70,40.72],
+               [-2.0,40.25],[-1.11,39.98],[-0.38,39.40],[1.0,39.30],[2.65,39.20],[3.5,39.00]];
+  /* Centerline duration shrinks as the shadow runs southeast and the Sun drops to the horizon:
+     ~1:48 over Asturias/León, barely over a minute by the Mediterranean. Seconds by longitude. */
+  var MAXDUR = [[-9.0,110],[-6.0,108],[-3.0,100],[0.0,86],[2.0,78],[3.5,72]];
+
+  function limitAt(line, lon){
+    if(lon < line[0][0] || lon > line[line.length-1][0]) return null;
+    for(var i=0;i<line.length-1;i++){
+      var a=line[i], b=line[i+1];
+      if(lon>=a[0] && lon<=b[0]){
+        var f=(b[0]===a[0])?0:(lon-a[0])/(b[0]-a[0]);
+        return a[1]+f*(b[1]-a[1]);
+      }
+    }
+    return null;
+  }
+  var lastFix = null;
+
+  function renderGeo(lat, lon){
+    lastFix = {lat:lat, lon:lon};
+    var out=document.getElementById('geoout');
+    var n=limitAt(LIM_N, lon), s=limitAt(LIM_S, lon);
+    var coords='<div class="coords">'+lat.toFixed(4)+', '+lon.toFixed(4)+'</div>';
+    if(n===null || s===null){
+      out.innerHTML='<span class="verdict out">'+GEO.outside[lang]+'</span>'+GEO.faraway[lang]+coords;
+      return;
+    }
+    var kmPerDeg=111.2, html;
+    if(lat>n){
+      html='<span class="verdict out">'+GEO.outside[lang]+'</span>'+
+           GEO.outN[lang].replace('{d}', Math.round((lat-n)*kmPerDeg));
+    } else if(lat<s){
+      html='<span class="verdict out">'+GEO.outside[lang]+'</span>'+
+           GEO.outS[lang].replace('{d}', Math.round((s-lat)*kmPerDeg));
+    } else {
+      var edgeKm=Math.round(Math.min(n-lat, lat-s)*kmPerDeg);
+      var f=(lat-s)/(n-s);                       // 0 = southern edge, 1 = northern edge
+      var peak=limitAt(MAXDUR, lon) || 90;
+      var secs=Math.round(peak*Math.sqrt(Math.max(0,1-Math.pow(2*f-1,2))));
+      if(edgeKm<12){
+        html='<span class="verdict out">'+GEO.edge[lang]+'</span>'+
+             GEO.edgeTxt[lang].replace('{d}', edgeKm);
+      } else {
+        var mmss=Math.floor(secs/60)+':'+(secs%60<10?'0':'')+(secs%60);
+        html='<span class="verdict in">'+GEO.inside[lang]+'</span>'+
+             GEO.inTxt[lang].replace('{s}', mmss).replace('{d}', edgeKm);
+      }
+    }
+    // Point every "Directions" link at this origin
+    var dirs=document.querySelectorAll('.links a[data-dest]');
+    for(var i=0;i<dirs.length;i++){
+      dirs[i].href='https://www.google.com/maps/dir/?api=1&origin='+
+        encodeURIComponent(lat.toFixed(5)+','+lon.toFixed(5))+
+        '&destination='+encodeURIComponent(dirs[i].getAttribute('data-dest'))+
+        '&travelmode=driving';
+    }
+    out.innerHTML=html+coords+
+      '<div style="margin-top:10px;font-size:13.5px;color:var(--faint)">'+
+      GEO.updated[lang]+' '+GEO.approx[lang]+'</div>';
+  }
+
+  function parseLoc(raw){
+    var t=(raw||'').trim();
+    if(!t) return null;
+    // Bare "lat, lon" or "lat lon"
+    var m=t.match(/^\s*(-?\d{1,3}(?:\.\d+)?)\s*[, ]\s*(-?\d{1,3}(?:\.\d+)?)\s*$/);
+    if(m) return chk(+m[1], +m[2]);
+    // Google Maps "!3d<lat>!4d<lon>" (place pages)
+    m=t.match(/!3d(-?\d+(?:\.\d+)?)!4d(-?\d+(?:\.\d+)?)/);
+    if(m) return chk(+m[1], +m[2]);
+    // "?q=lat,lon" / "&query=lat,lon" / "&destination=lat,lon"
+    m=t.match(/[?&](?:q|query|destination|daddr|ll|sll|center)=(-?\d+(?:\.\d+)?)[,%2C+ ]+(-?\d+(?:\.\d+)?)/i);
+    if(m) return chk(+m[1], +m[2]);
+    // "/@lat,lon,zoom"
+    m=t.match(/@(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)/);
+    if(m) return chk(+m[1], +m[2]);
+    return null;
+  }
+  function chk(la, lo){
+    if(!isFinite(la)||!isFinite(lo)) return null;
+    if(la<-90||la>90||lo<-180||lo>180) return null;
+    return {lat:la, lon:lo};
+  }
+
+  var geobtn=document.getElementById('geobtn');
+  var geocheck=document.getElementById('geocheck');
+  var geoinput=document.getElementById('geoinput');
+  var geoout=document.getElementById('geoout');
+
+  geobtn.addEventListener('click', function(){
+    if(!navigator.geolocation){ geoout.textContent=GEO.unavail[lang]; return; }
+    geobtn.disabled=true;
+    geoout.textContent=GEO.locating[lang];
+    navigator.geolocation.getCurrentPosition(function(pos){
+      geobtn.disabled=false;
+      renderGeo(pos.coords.latitude, pos.coords.longitude);
+    }, function(err){
+      geobtn.disabled=false;
+      geoout.textContent = (err && err.code===1) ? GEO.denied[lang] : GEO.unavail[lang];
+    }, {enableHighAccuracy:true, timeout:12000, maximumAge:60000});
+  });
+
+  function runCheck(){
+    var p=parseLoc(geoinput.value);
+    if(!p){ geoout.textContent=GEO.badinput[lang]; return; }
+    renderGeo(p.lat, p.lon);
+  }
+  geocheck.addEventListener('click', runCheck);
+  geoinput.addEventListener('keydown', function(e){ if(e.key==='Enter') runCheck(); });
 
   applyLang(lang);
   tick();
