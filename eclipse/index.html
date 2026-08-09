@@ -217,6 +217,21 @@
   /* Bidi: the day count must be isolated from the clock, or Hebrew reordering
      glues them into one number ("3" + "17:26:41" reading as "317:26:41"). */
   #countdown{direction:ltr; unicode-bidi:isolate}
+  .tval{font-variant-numeric:tabular-nums; direction:ltr; unicode-bidi:isolate}
+  .tzbar{display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-top:26px;
+    border:1px solid var(--line); background:var(--panel); padding:12px 16px}
+  .tzlabel{font-size:13.5px; color:var(--muted)}
+  .tzbtns{display:flex; gap:2px; border:1px solid var(--line)}
+  .tzbtns button{font-family:var(--sans); font-size:13px; background:none; border:none;
+    color:var(--muted); padding:7px 14px; cursor:pointer}
+  .tzbtns button:hover{color:var(--corona)}
+  .tzbtns button.on{background:var(--solar); color:#171004; font-weight:600}
+  .tzhint{font-size:13px; color:var(--solar); flex-basis:100%; line-height:1.6}
+  .tzhint:empty{display:none}
+  .warnbar{background:#2A0F0C; border-block:1px solid #6E2A22}
+  .warnbar p{max-width:78ch; margin:0 auto; padding:16px 0; font-size:15px; color:#F3C9C2}
+  .warnbar strong{color:#FF9C8C}
+  .warnbar em{color:#FFD9D1; font-style:normal; text-decoration:underline}
   #countdown .cd-d{unicode-bidi:isolate; margin-inline-end:.15em}
   [dir="rtl"] #countdown{text-align:right}
 
@@ -274,7 +289,7 @@
   <div class="hero-disc" aria-hidden="true"></div>
   <div class="hero-inner">
     <h1>TOTALIDAD</h1>
-    <p class="sub" data-i18n="hero-sub">Total solar eclipse · Wednesday <b>12 August 2026</b> · totality over northern Spain at <b>≈ 20:30</b> local time — Spain's first since 1905</p>
+    <p class="sub" data-i18n="hero-sub">Total solar eclipse · Wednesday <b>12 August 2026</b> · totality over northern Spain at <b>≈ {{u1830}}</b> — Spain's first since 1905</p>
     <div class="wrap">
       <div class="strip">
         <div><div class="k" data-i18n="k1">Countdown to totality</div><div class="v" id="countdown">—</div></div>
@@ -287,6 +302,13 @@
   </div>
 </div>
 
+<div class="warnbar"><div class="wrap">
+  <p data-i18n="warn-banner"><strong>⚠ Never look at the Sun without certified eclipse glasses.</strong>
+  A partially eclipsed Sun burns the retina without any pain, and the blindness it causes can be permanent.
+  Glasses come off <em>only</em> during the ~1 minute of full totality — and go straight back on the instant
+  the Sun reappears.</p>
+</div></div>
+
 <section id="globe"><div class="wrap">
   <p class="eyebrow" data-i18n="s0-eyebrow">01 · Where on Earth</p>
   <h2 data-i18n="s0-h2">From home you would have seen nothing at all</h2>
@@ -294,7 +316,7 @@
   runs from the Arctic across eastern Greenland and western Iceland, down the Atlantic, and makes landfall in
   northern Spain right at sunset — where it runs out of daylight and the eclipse ends.</p>
   <p data-i18n="s0-p2">Israel is on the wrong side of the planet for it. By the time totality reaches Spain at
-  20:30, it is <strong>21:30 in Tel Aviv and the Sun set two hours earlier</strong> — the eclipse is not visible from
+  {{u1830|ES}}, it is <strong>{{u1830|IL}} in Tel Aviv and the Sun set at {{u1629|IL}}</strong> — the eclipse is not visible from
   Israel at all, not even as a partial. Being in Spain this week is the whole opportunity.</p>
   <div class="figure">
     <svg viewBox="0 0 900 520" role="img" aria-label="Map from Greenland to the Middle East showing the band of totality crossing Iceland and northern Spain, with Israel on the night side">
@@ -358,14 +380,13 @@
         <text x="58" y="490" fill="#CDD2E3" data-i18n-text="g2-lg2">sunset line</text>
       </g>
     </svg>
-    <div class="figcap" data-i18n="s0-cap">Positions at 20:30 Spanish time (18:30 UTC), the moment of totality over Aragón. The amber band is drawn slightly wide to stay visible — in reality it is only about 290 km across. East of the dashed line the Sun has already set.</div>
+    <div class="figcap" data-i18n="s0-cap">Positions at {{u1830|ES}} Spanish time (18:30 UTC), the moment of totality over Aragón. The amber band is drawn slightly wide to stay visible — in reality it is only about 290 km across. East of the dashed line the Sun has already set.</div>
   </div>
 
-  <div class="strip strip-flat">
+  <div class="strip strip-flat strip-3">
     <div><div class="k" data-i18n="g1">When</div><div class="v"><span class="num">12.8.2026</span> <small data-i18n="g1s">20:30 Spain · 21:30 Israel</small></div></div>
     <div><div class="k" data-i18n="g2">Totality crosses</div><div class="v" data-i18n="g2v">Greenland · Iceland · N. Spain</div></div>
     <div><div class="k" data-i18n="g3">Last one over Spain</div><div class="v"><span class="num">1905</span> <small data-i18n="g3s">121 years ago</small></div></div>
-    <div><div class="k" data-i18n="g4">Next one over Spain</div><div class="v"><span class="num">2027</span> <small data-i18n="g4s">2 Aug, the far south</small></div></div>
   </div>
 </div></section>
 
@@ -440,7 +461,7 @@
 <section id="map"><div class="wrap">
   <p class="eyebrow" data-i18n="s2-eyebrow">04 · Where the eclipse is</p>
   <h2 data-i18n="s2-h2">The shadow crosses Spain northwest to southeast</h2>
-  <p data-i18n="s2-p1">The Moon's umbra makes landfall in Galicia at ~20:26 and sweeps to the Balearics by ~20:33 —
+  <p data-i18n="s2-p1">The Moon's umbra makes landfall in Galicia at ~{{u1826}} and sweeps to the Balearics by ~{{u1833}} —
   the whole country is crossed in about seven minutes. Inside the amber band the Sun goes fully dark for up
   to ~1 min 48 s near the centerline; near the edges, only seconds.</p>
   <div class="figure">
@@ -467,7 +488,7 @@
       <g stroke="rgba(240,234,219,.65)" stroke-width="1.6" fill="none">
         <path d="M60,120 L170,140"/><path d="M170,140 L159,132 M170,140 L158,147"/>
       </g>
-      <text x="60" y="111" fill="#8B93AE" font-size="11" font-family="ui-monospace,Menlo,monospace" data-i18n-text="m-arrow">shadow 20:26 → 20:33</text>
+      <text x="60" y="111" fill="#8B93AE" font-size="11" font-family="ui-monospace,Menlo,monospace" data-i18n-text="m-arrow">shadow {{u1826}} → {{u1833}}</text>
       <g font-family="-apple-system,Segoe UI,Roboto,sans-serif" font-size="12">
         <rect x="392" y="386" width="216" height="76" fill="rgba(6,8,15,.85)" stroke="#1D2440"/>
         <rect x="404" y="399" width="22" height="10" fill="rgba(242,169,59,.35)" stroke="rgba(242,169,59,.9)"/>
@@ -563,26 +584,34 @@
     <p data-i18n="s3-warn"><strong>Do not:</strong> stay in the Sobrarbe (99.5% ≠ totality) · stop at Barbastro, Monzón or
     Huesca city — they sit <em>on</em> the very edge, where lunar-valley effects make totality unreliable ·
     watch from any Pyrenean valley (the 5° Sun dies behind terrain). Cross the limit and keep going south.
-    Be parked and seated by <strong>19:00</strong>, and expect slow roads home.</p>
+    Be parked and seated by <strong>{{u1700}}</strong>, and expect slow roads home.</p>
   </div>
 </div></section>
 
 <section id="timeline"><div class="wrap">
   <p class="eyebrow" data-i18n="s4-eyebrow">06 · The evening, minute by minute</p>
   <h2 data-i18n="s4-h2">Timeline for the Monegros seat</h2>
+  <div class="tzbar">
+    <span class="tzlabel" data-i18n="tz-label">All times on this page:</span>
+    <span class="tzbtns">
+      <button type="button" data-tz="es" data-i18n="tz-es">Spain time</button>
+      <button type="button" data-tz="local" data-i18n="tz-mine">My device</button>
+    </span>
+    <span class="tzhint" id="tzhint"></span>
+  </div>
   <div class="tbl"><table>
     <thead><tr><th data-i18n="th1">Local time</th><th data-i18n="th2">Event</th><th data-i18n="th3">What you see</th></tr></thead>
     <tbody>
-      <tr><td class="t">19:00</td><td data-i18n="r1e">Arrive &amp; settle</td><td data-i18n="r1d">Scout your flat WNW horizon, set up chairs facing 285°, glasses out.</td></tr>
-      <tr><td class="t">19:37</td><td data-i18n="r2e">First contact — partial begins</td><td data-i18n="r2d">The Moon takes its first bite from the Sun's upper right. Glasses ON.</td></tr>
-      <tr><td class="t">20:15</td><td data-i18n="r3e">~80% covered</td><td data-i18n="r3d">Light turns strange and silvery; shadows sharpen; temperature drops.</td></tr>
-      <tr><td class="t">20:29</td><td data-i18n="r4e">Final minute</td><td data-i18n="r4d">Shadow bands may ripple on the ground; the western sky darkens fast; diamond-ring flash.</td></tr>
-      <tr class="total"><td class="t">20:30–20:31</td><td data-i18n="r5e"><strong>TOTALITY · ~1 minute</strong></td><td data-i18n="r5d">Glasses OFF. Black Sun with white corona 5° over the horizon, planets pop out, 360° sunset glow. Look around, not just up.</td></tr>
-      <tr><td class="t">20:31</td><td data-i18n="r6e">Third contact — partial resumes</td><td data-i18n="r6d">Diamond ring on the opposite limb. Glasses back ON immediately.</td></tr>
-      <tr><td class="t">21:04</td><td data-i18n="r7e">Sunset</td><td data-i18n="r7d">The still-eclipsed crescent Sun sinks below the horizon — a rare sight in itself.</td></tr>
+      <tr><td class="t" data-utc="1700"></td><td data-i18n="r1e">Arrive &amp; settle</td><td data-i18n="r1d">Scout your flat WNW horizon, set up chairs facing 285°, glasses out.</td></tr>
+      <tr><td class="t" data-utc="1737"></td><td data-i18n="r2e">First contact — partial begins</td><td data-i18n="r2d">The Moon takes its first bite from the Sun's upper right. Glasses ON.</td></tr>
+      <tr><td class="t" data-utc="1815"></td><td data-i18n="r3e">~80% covered</td><td data-i18n="r3d">Light turns strange and silvery; shadows sharpen; temperature drops.</td></tr>
+      <tr><td class="t" data-utc="1829"></td><td data-i18n="r4e">Final minute</td><td data-i18n="r4d">Shadow bands may ripple on the ground; the western sky darkens fast; diamond-ring flash.</td></tr>
+      <tr class="total"><td class="t" data-utc="1830" data-utc2="1831"></td><td data-i18n="r5e"><strong>TOTALITY · ~1 minute</strong></td><td data-i18n="r5d">This minute — and only this minute — it is safe to take the glasses off. Black Sun with white corona 5° over the horizon, planets pop out, 360° sunset glow. The instant any sliver of Sun returns, glasses back on.</td></tr>
+      <tr><td class="t" data-utc="1831"></td><td data-i18n="r6e">Third contact — partial resumes</td><td data-i18n="r6d">Diamond ring on the opposite limb. Glasses back ON immediately.</td></tr>
+      <tr><td class="t" data-utc="1904"></td><td data-i18n="r7e">Sunset</td><td data-i18n="r7d">The still-eclipsed crescent Sun sinks below the horizon — a rare sight in itself.</td></tr>
     </tbody>
   </table></div>
-  <p class="muted" style="margin-top:16px" data-i18n="s4-note">If you stayed in Boltaña: partial only, max ~99.5% at 20:30, Sun sets eclipsed ~21:04 — and the mountains will likely hide even that. Drive.</p>
+  <p class="muted" style="margin-top:16px" data-i18n="s4-note">If you stayed in Boltaña: partial only, max ~99.5% at {{u1830}}, Sun sets eclipsed ~{{u1904}} — and the mountains will likely hide even that. Drive.</p>
 </div></section>
 
 
@@ -590,7 +619,7 @@
   <p class="eyebrow" data-i18n="s6-eyebrow">07 · Simulation</p>
   <h2 data-i18n="s6-h2">How it will look from your seat</h2>
   <p data-i18n="s6-p1">Facing west-northwest from the Monegros steppe. Drag the slider or press play to run the evening —
-  watch the light die in the final minute before 20:30. (Schematic rendering; the real thing is better.)</p>
+  watch the light die in the final minute before {{u1830}}. (Schematic rendering; the real thing is better.)</p>
   <div class="sim">
     <canvas id="skycv" width="1200" height="600" aria-label="Animated simulation of the eclipse over a flat horizon"></canvas>
     <div class="sim-controls">
@@ -606,19 +635,18 @@
   <h2 data-i18n="s7-h2">Protect your eyes — one exception only</h2>
   <div class="callout red">
     <p data-i18n="s7-call"><strong>Certified eclipse glasses (ISO 12312-2) for every partial phase</strong> — that's all of
-    19:37→20:30 and 20:31→sunset. Sunglasses, phone screens and exposed film do not count.
+    {{u1737}}→{{u1830}} and {{u1831}}→sunset. Sunglasses, phone screens and exposed film do not count.
     The <em>only</em> time it is safe to look with naked eyes is the ~1 minute of totality itself.
     When the diamond ring reappears, glasses go back on instantly.</p>
   </div>
   <ul class="check">
     <li data-i18n="chk1">Eclipse glasses for everyone in the car — buy them in Aínsa or Barbastro <em>tomorrow</em>; pharmacies and opticians are selling out.</li>
-    <li data-i18n="chk2">Leave Boltaña by ~16:30–17:00. Mountain roads plus eclipse traffic — give yourself margin, arrive by 19:00.</li>
+    <li data-i18n="chk2">Leave Boltaña by ~{{u1430}}–{{u1500}}. Mountain roads plus eclipse traffic — give yourself margin, arrive by {{u1700}}.</li>
     <li data-i18n="chk3">Seat check on arrival: face 285° WNW, hold half a fist at arm's length — the Sun must clear everything on the horizon at that height.</li>
     <li data-i18n="chk4">Water, snacks, layers (temperature drops noticeably near totality), headlamp for the drive back.</li>
     <li data-i18n="chk5">Phone: shoot the horizon and the people, not the Sun. Your eyes get the corona; cameras without solar filters get damaged.</li>
     <li data-i18n="chk6">During totality: 10 seconds for photos, the rest for looking. Notice the 360° orange horizon and the planets.</li>
   </ul>
-  <p class="muted" style="margin-top:26px" data-i18n="s7-next">Missed it? Spain gets a second chance: another total eclipse crosses the south on 2 August 2027. But the forecast says you won't need it.</p>
 </div></section>
 
 <footer><div class="wrap">
@@ -631,7 +659,7 @@
     <p><a href="https://eclipsophile.com/tse2026/">Eclipsophile — climate &amp; strategy</a><br>
     <a href="https://eclipse-solar.es/mapa/">Interactive path map (ES)</a><br>
     <a href="https://nationaleclipse.com/overviews/2026-total-solar-eclipse-overview.html">National Eclipse — overview</a><br>
-    <span data-i18n="foot-note">Cloud forecast: Open-Meteo, retrieved 9 Aug 2026 · Location from your map pin · Sun position computed for 20:30 CEST</span></p>
+    <span data-i18n="foot-note">Cloud forecast: Open-Meteo, retrieved 9 Aug 2026 · Location from your map pin · Sun position computed for 18:30 UTC</span></p>
   </div>
   <p class="credit"><span data-i18n="credit">Made by</span> <a href="https://guy-avraham.com" rel="author">Guy Av</a></p>
 </div></footer>
@@ -643,9 +671,9 @@
   /* ═══ i18n ═══ */
   var I18N = {
     'hero-sub':{
-      en:'Total solar eclipse · Wednesday <b>12 August 2026</b> · totality over northern Spain at <b>≈ 20:30</b> local time — Spain\'s first since 1905',
-      he:'ליקוי חמה מלא · יום רביעי <b>12 באוגוסט 2026</b> · ליקוי מלא מעל צפון ספרד בשעה <b>≈ 20:30</b> שעון מקומי — הראשון בספרד מאז 1905',
-      es:'Eclipse solar total · miércoles <b>12 de agosto de 2026</b> · totalidad sobre el norte de España a las <b>≈ 20:30</b> hora local — el primero en España desde 1905'},
+      en:'Total solar eclipse · Wednesday <b>12 August 2026</b> · totality over northern Spain at <b>≈ {{u1830}}</b> — Spain\'s first since 1905',
+      he:'ליקוי חמה מלא · יום רביעי <b>12 באוגוסט 2026</b> · ליקוי מלא מעל צפון ספרד בשעה <b>≈ {{u1830}}</b> — הראשון בספרד מאז 1905',
+      es:'Eclipse solar total · miércoles <b>12 de agosto de 2026</b> · totalidad sobre el norte de España a las <b>≈ {{u1830}}</b> — el primero en España desde 1905'},
     k1:{en:'Countdown to totality', he:'ספירה לאחור לליקוי המלא', es:'Cuenta atrás a la totalidad'},
     k2:{en:'Your location', he:'המיקום שלך', es:'Tu ubicación'},
     v2:{en:'Boltaña · Pyrenees', he:'בולטניה · הפירנאים', es:'Boltaña · Pirineos'},
@@ -674,14 +702,14 @@
     's2-eyebrow':{en:'04 · Where the eclipse is', he:'04 · איפה הליקוי', es:'04 · Dónde está el eclipse'},
     's2-h2':{en:'The shadow crosses Spain northwest to southeast', he:'הצל חוצה את ספרד מצפון־מערב לדרום־מזרח', es:'La sombra cruza España de noroeste a sureste'},
     's2-p1':{
-      en:'The Moon\'s umbra makes landfall in Galicia at ~20:26 and sweeps to the Balearics by ~20:33 — the whole country is crossed in about seven minutes. Inside the amber band the Sun goes fully dark for up to ~1 min 48 s near the centerline; near the edges, only seconds.',
-      he:'צל הירח (האומברה) נוגע ביבשה בגליסיה בסביבות 20:26 ומגיע לאיים הבלאריים ב־20:33 — כל המדינה נחצית בכשבע דקות. בתוך הרצועה הכתומה השמש מחשיכה לחלוטין למשך עד ~1:48 דקות ליד קו המרכז; ליד הקצוות — שניות בודדות.',
-      es:'La umbra de la Luna toca tierra en Galicia hacia las 20:26 y llega a Baleares a las ~20:33 — todo el país en unos siete minutos. Dentro de la banda ámbar el Sol se oscurece por completo hasta ~1 min 48 s cerca de la línea central; cerca de los bordes, solo segundos.'},
+      en:'The Moon\'s umbra makes landfall in Galicia at ~{{u1826}} and sweeps to the Balearics by ~{{u1833}} — the whole country is crossed in about seven minutes. Inside the amber band the Sun goes fully dark for up to ~1 min 48 s near the centerline; near the edges, only seconds.',
+      he:'צל הירח (האומברה) נוגע ביבשה בגליסיה בסביבות {{u1826}} ומגיע לאיים הבלאריים ב־{{u1833}} — כל המדינה נחצית בכשבע דקות. בתוך הרצועה הכתומה השמש מחשיכה לחלוטין למשך עד ~1:48 דקות ליד קו המרכז; ליד הקצוות — שניות בודדות.',
+      es:'La umbra de la Luna toca tierra en Galicia hacia las {{u1826}} y llega a Baleares a las ~{{u1833}} — todo el país en unos siete minutos. Dentro de la banda ámbar el Sol se oscurece por completo hasta ~1 min 48 s cerca de la línea central; cerca de los bordes, solo segundos.'},
     's2-cap':{
       en:'Schematic map (not survey-accurate). Band ≈ 290 km wide. Boltaña sits ~45 km north of the northern limit — the Pyrenees just miss the show, which is exactly why you drive south.',
       he:'מפה סכמטית (לא מדויקת מדידתית). רוחב הרצועה ≈ 290 ק״מ. בולטניה יושבת ~45 ק״מ צפונית לגבול — הפירנאים מפספסים את המופע בקצת, ובדיוק בגלל זה נוסעים דרומה.',
       es:'Mapa esquemático (no topográfico). Banda ≈ 290 km de ancho. Boltaña está a ~45 km al norte del límite — el Pirineo se queda justo fuera del espectáculo; exactamente por eso conduces al sur.'},
-    'm-arrow':{en:'shadow 20:26 → 20:33', he:'הצל 20:26 ← 20:33', es:'sombra 20:26 → 20:33'},
+    'm-arrow':{en:'shadow {{u1826}} → {{u1833}}', he:'הצל {{u1826}} ← {{u1833}}', es:'sombra {{u1826}} → {{u1833}}'},
     'm-lg1':{en:'band of totality', he:'רצועת הליקוי המלא', es:'banda de totalidad'},
     'm-nlimit':{en:'edge of the band', he:'גבול הרצועה', es:'borde de la banda'},
     'm-center':{en:'centerline · longest', he:'קו המרכז · הכי ארוך', es:'línea central · lo más largo'},
@@ -737,9 +765,9 @@
       he:'דרך ברבסטרו, A-131 · ‎~95 ק״מ · ‎~1:20 שע׳ · תחזית <b>0% עננות</b>',
       es:'Vía Barbastro, A-131 · ~95 km · ~1 h 20 m · pronóstico <b>0% nubes</b>'},
     's3-warn':{
-      en:'<strong>Do not:</strong> stay in the Sobrarbe (99.5% ≠ totality) · stop at Barbastro, Monzón or Huesca city — they sit <em>on</em> the very edge, where lunar-valley effects make totality unreliable · watch from any Pyrenean valley (the 5° Sun dies behind terrain). Cross the limit and keep going south. Be parked and seated by <strong>19:00</strong>, and expect slow roads home.',
-      he:'<strong>מה לא לעשות:</strong> להישאר בסוברארבה (99.5% ≠ ליקוי מלא) · לעצור בברבסטרו, מונסון או העיר ווסקה — הן יושבות <em>על</em> הקצה ממש, שם עמקי הירח הופכים את הליקוי המלא ללא־אמין · לצפות מעמק בפירנאים (שמש בגובה 5° מתה מאחורי ההרים). חצו את הגבול והמשיכו דרומה. היו חונים ויושבים עד <strong>19:00</strong>, וצפו לכבישים איטיים בדרך חזרה.',
-      es:'<strong>No hagas esto:</strong> quedarte en el Sobrarbe (99,5% ≠ totalidad) · pararte en Barbastro, Monzón o Huesca capital — están <em>sobre</em> el mismo borde, donde los valles lunares hacen la totalidad poco fiable · mirar desde un valle pirenaico (el Sol a 5° muere tras el terreno). Cruza el límite y sigue hacia el sur. Aparcado y sentado a las <strong>19:00</strong>, y espera carreteras lentas de vuelta.'},
+      en:'<strong>Do not:</strong> stay in the Sobrarbe (99.5% ≠ totality) · stop at Barbastro, Monzón or Huesca city — they sit <em>on</em> the very edge, where lunar-valley effects make totality unreliable · watch from any Pyrenean valley (the 5° Sun dies behind terrain). Cross the limit and keep going south. Be parked and seated by <strong>{{u1700}}</strong>, and expect slow roads home.',
+      he:'<strong>מה לא לעשות:</strong> להישאר בסוברארבה (99.5% ≠ ליקוי מלא) · לעצור בברבסטרו, מונסון או העיר ווסקה — הן יושבות <em>על</em> הקצה ממש, שם עמקי הירח הופכים את הליקוי המלא ללא־אמין · לצפות מעמק בפירנאים (שמש בגובה 5° מתה מאחורי ההרים). חצו את הגבול והמשיכו דרומה. היו חונים ויושבים עד <strong>{{u1700}}</strong>, וצפו לכבישים איטיים בדרך חזרה.',
+      es:'<strong>No hagas esto:</strong> quedarte en el Sobrarbe (99,5% ≠ totalidad) · pararte en Barbastro, Monzón o Huesca capital — están <em>sobre</em> el mismo borde, donde los valles lunares hacen la totalidad poco fiable · mirar desde un valle pirenaico (el Sol a 5° muere tras el terreno). Cruza el límite y sigue hacia el sur. Aparcado y sentado a las <strong>{{u1700}}</strong>, y espera carreteras lentas de vuelta.'},
 
     's4-eyebrow':{en:'06 · The evening, minute by minute', he:'06 · הערב, דקה אחר דקה', es:'06 · La tarde, minuto a minuto'},
     's4-h2':{en:'Timeline for the Monegros seat', he:'ציר הזמן — מושב מונגרוס', es:'Cronología — asiento de los Monegros'},
@@ -755,15 +783,18 @@
     r4e:{en:'Final minute', he:'הדקה האחרונה', es:'Último minuto'},
     r4d:{en:'Shadow bands may ripple on the ground; the western sky darkens fast; diamond-ring flash.', he:'פסי צל עשויים לרצד על הקרקע; השמיים במערב מחשיכים מהר; הבזק "טבעת היהלום".', es:'Pueden ondular bandas de sombra en el suelo; el cielo del oeste se oscurece rápido; destello del anillo de diamante.'},
     r5e:{en:'<strong>TOTALITY · ~1 minute</strong>', he:'<strong>ליקוי מלא · ~דקה</strong>', es:'<strong>TOTALIDAD · ~1 minuto</strong>'},
-    r5d:{en:'Glasses OFF. Black Sun with white corona 5° over the horizon, planets pop out, 360° sunset glow. Look around, not just up.', he:'משקפיים למטה. שמש שחורה עם עטרה לבנה 5° מעל האופק, כוכבי לכת מופיעים, זוהר שקיעה ב־360°. הסתכלו סביב, לא רק למעלה.', es:'Gafas FUERA. Sol negro con corona blanca a 5° del horizonte, aparecen los planetas, resplandor de atardecer en 360°. Mira alrededor, no solo arriba.'},
+    r5d:{
+      en:'This minute — and only this minute — it is safe to take the glasses off. Black Sun with white corona 5° over the horizon, planets pop out, 360° sunset glow. The instant any sliver of Sun returns, glasses back on.',
+      he:'רק עכשיו — ורק בדקה הזו — בטוח להוריד את המשקפיים. שמש שחורה עם עטרה לבנה 5° מעל האופק, כוכבי לכת מופיעים, זוהר שקיעה ב־360°. ברגע שחוזר שביב האור הראשון מהשמש — משקפיים חזרה מיד.',
+      es:'Este minuto — y solo este minuto — es seguro quitarse las gafas. Sol negro con corona blanca a 5° del horizonte, aparecen los planetas, resplandor de atardecer en 360°. En cuanto vuelva cualquier brizna de Sol, gafas puestas al instante.'},
     r6e:{en:'Third contact — partial resumes', he:'מגע שלישי — הליקוי החלקי חוזר', es:'Tercer contacto — vuelve la fase parcial'},
     r6d:{en:'Diamond ring on the opposite limb. Glasses back ON immediately.', he:'טבעת יהלום בצד הנגדי. משקפיים חזרה — מיד.', es:'Anillo de diamante en el limbo opuesto. Gafas puestas de inmediato.'},
     r7e:{en:'Sunset', he:'שקיעה', es:'Puesta de sol'},
     r7d:{en:'The still-eclipsed crescent Sun sinks below the horizon — a rare sight in itself.', he:'סהר השמש, עדיין לקוי, שוקע מתחת לאופק — מחזה נדיר בפני עצמו.', es:'El Sol en creciente, aún eclipsado, se hunde bajo el horizonte — un espectáculo raro en sí mismo.'},
     's4-note':{
-      en:'If you stayed in Boltaña: partial only, max ~99.5% at 20:30, Sun sets eclipsed ~21:04 — and the mountains will likely hide even that. Drive.',
-      he:'אם תישארו בבולטניה: חלקי בלבד, מקסימום ~99.5% ב־20:30, השמש שוקעת לקויה ~21:04 — וההרים כנראה יסתירו אפילו את זה. סעו.',
-      es:'Si te quedas en Boltaña: solo parcial, máximo ~99,5% a las 20:30, el Sol se pone eclipsado ~21:04 — y las montañas probablemente taparán incluso eso. Conduce.'},
+      en:'If you stayed in Boltaña: partial only, max ~99.5% at {{u1830}}, Sun sets eclipsed ~{{u1904}} — and the mountains will likely hide even that. Drive.',
+      he:'אם תישארו בבולטניה: חלקי בלבד, מקסימום ~99.5% ב־{{u1830}}, השמש שוקעת לקויה ~{{u1904}} — וההרים כנראה יסתירו אפילו את זה. סעו.',
+      es:'Si te quedas en Boltaña: solo parcial, máximo ~99,5% a las {{u1830}}, el Sol se pone eclipsado ~{{u1904}} — y las montañas probablemente taparán incluso eso. Conduce.'},
 
     's5-eyebrow':{en:'02 · Sun · Moon · Earth', he:'02 · שמש · ירח · כדור הארץ', es:'02 · Sol · Luna · Tierra'},
     's5-h2':{en:'Why this evening is special', he:'למה הערב הזה מיוחד', es:'Por qué esta tarde es especial'},
@@ -785,34 +816,30 @@
     's6-eyebrow':{en:'07 · Simulation', he:'07 · הדמיה', es:'07 · Simulación'},
     's6-h2':{en:'How it will look from your seat', he:'כך זה ייראה מהמושב שלכם', es:'Así se verá desde tu asiento'},
     's6-p1':{
-      en:'Facing west-northwest from the Monegros steppe. Drag the slider or press play to run the evening — watch the light die in the final minute before 20:30. (Schematic rendering; the real thing is better.)',
-      he:'מבט למערב־צפון־מערב מערבת מונגרוס. גררו את הסליידר או לחצו נגן כדי להריץ את הערב — שימו לב איך האור גווע בדקה האחרונה לפני 20:30. (הדמיה סכמטית; המציאות יפה יותר.)',
-      es:'Mirando al oeste-noroeste desde la estepa de los Monegros. Arrastra el control o pulsa reproducir para recorrer la tarde — observa cómo muere la luz en el último minuto antes de las 20:30. (Representación esquemática; el real es mejor.)'},
+      en:'Facing west-northwest from the Monegros steppe. Drag the slider or press play to run the evening — watch the light die in the final minute before {{u1830}}. (Schematic rendering; the real thing is better.)',
+      he:'מבט למערב־צפון־מערב מערבת מונגרוס. גררו את הסליידר או לחצו נגן כדי להריץ את הערב — שימו לב איך האור גווע בדקה האחרונה לפני {{u1830}}. (הדמיה סכמטית; המציאות יפה יותר.)',
+      es:'Mirando al oeste-noroeste desde la estepa de los Monegros. Arrastra el control o pulsa reproducir para recorrer la tarde — observa cómo muere la luz en el último minuto antes de las {{u1830}}. (Representación esquemática; el real es mejor.)'},
     'ro-cov':{en:'☉ covered', he:'☉ מכוסה', es:'☉ cubierto'},
     'ro-alt':{en:'alt', he:'גובה', es:'alt'},
 
     's7-eyebrow':{en:'08 · Safety &amp; kit', he:'08 · בטיחות וציוד', es:'08 · Seguridad y equipo'},
     's7-h2':{en:'Protect your eyes — one exception only', he:'הגנו על העיניים — חריג אחד בלבד', es:'Protege tus ojos — una sola excepción'},
     's7-call':{
-      en:'<strong>Certified eclipse glasses (ISO 12312-2) for every partial phase</strong> — that\'s all of 19:37→20:30 and 20:31→sunset. Sunglasses, phone screens and exposed film do not count. The <em>only</em> time it is safe to look with naked eyes is the ~1 minute of totality itself. When the diamond ring reappears, glasses go back on instantly.',
-      he:'<strong>משקפי ליקוי תקניים (ISO 12312-2) בכל השלבים החלקיים</strong> — כלומר כל 19:37←20:30 ו־20:31←שקיעה. משקפי שמש, מסכי טלפון ופילם חשוף לא נחשבים. הזמן <em>היחיד</em> שבטוח להביט בעין חשופה הוא ~דקת הליקוי המלא עצמה. כשטבעת היהלום מופיעה שוב — משקפיים חזרה מיד.',
-      es:'<strong>Gafas de eclipse certificadas (ISO 12312-2) durante toda fase parcial</strong> — es decir, de 19:37→20:30 y de 20:31→la puesta. Las gafas de sol, pantallas y película velada no sirven. El <em>único</em> momento seguro para mirar a simple vista es el ~minuto de totalidad. Cuando reaparezca el anillo de diamante, gafas puestas al instante.'},
+      en:'<strong>Staring at a partially eclipsed Sun can blind you permanently.</strong> The retina has no pain receptors, so the burn happens silently and you may only notice the damage hours later, when it is already done. Everyone needs certified <strong>ISO 12312-2</strong> eclipse glasses for every partial phase — all of {{u1737}}→{{u1830}} and {{u1831}}→sunset. Sunglasses, two pairs of sunglasses, phone screens, exposed film and smoked glass are <em>not</em> protection. Never look through a camera, binoculars or a telescope without a proper solar filter — they concentrate the light and can injure you instantly, even if you are wearing eclipse glasses. The <em>only</em> safe moment for naked eyes is the ~1 minute of totality itself.',
+      he:'<strong>הסתכלות על שמש בליקוי חלקי עלולה לגרום לעיוורון בלתי הפיך.</strong> ברשתית אין קולטני כאב, ולכן הכווייה קורית בשקט — לפעמים מבחינים בנזק רק שעות אחר כך, כשהוא כבר נעשה. כל אחד צריך משקפי ליקוי תקניים <strong>ISO 12312-2</strong> בכל השלבים החלקיים — כלומר כל {{u1737}}←{{u1830}} ו־{{u1831}}←שקיעה. משקפי שמש, שתי משקפי שמש זו על גבי זו, מסכי טלפון, פילם חשוף וזכוכית מפויחת <em>אינם</em> הגנה. אף פעם אל תסתכלו דרך מצלמה, משקפת או טלסקופ בלי פילטר סולארי ייעודי — הם מרכזים את האור ויכולים לפגוע בכם ברגע, גם אם אתם מרכיבים משקפי ליקוי. הזמן <em>היחיד</em> שבטוח להביט בעין חשופה הוא ~דקת הליקוי המלא עצמה.',
+      es:'<strong>Mirar un Sol parcialmente eclipsado puede dejarte ciego de forma permanente.</strong> La retina no tiene receptores de dolor, así que la quemadura ocurre en silencio y puedes notar el daño horas después, cuando ya está hecho. Todo el mundo necesita gafas de eclipse certificadas <strong>ISO 12312-2</strong> en toda fase parcial — de {{u1737}}→{{u1830}} y de {{u1831}}→la puesta. Las gafas de sol, dos gafas superpuestas, las pantallas, la película velada y el cristal ahumado <em>no</em> protegen. Nunca mires por una cámara, unos prismáticos o un telescopio sin filtro solar específico — concentran la luz y pueden lesionarte al instante, incluso llevando gafas de eclipse. El <em>único</em> momento seguro a simple vista es el ~minuto de totalidad.'},
     chk1:{en:'Eclipse glasses for everyone in the car — buy them in Aínsa or Barbastro <em>tomorrow</em>; pharmacies and opticians are selling out.', he:'משקפי ליקוי לכל נוסע ברכב — קנו אותם באאינסה או בברבסטרו <em>מחר</em>; בתי מרקחת ואופטיקאים אוזלים מהמלאי.', es:'Gafas de eclipse para todos los del coche — cómpralas en Aínsa o Barbastro <em>mañana</em>; farmacias y ópticas se están quedando sin stock.'},
-    chk2:{en:'Leave Boltaña by ~16:30–17:00. Mountain roads plus eclipse traffic — give yourself margin, arrive by 19:00.', he:'צאו מבולטניה עד ~16:30–17:00. כבישי הרים ועומסי ליקוי — קחו מרווח, הגיעו עד 19:00.', es:'Sal de Boltaña hacia las 16:30–17:00. Carreteras de montaña más tráfico del eclipse — date margen, llega a las 19:00.'},
+    chk2:{en:'Leave Boltaña by ~{{u1430}}–{{u1500}}. Mountain roads plus eclipse traffic — give yourself margin, arrive by {{u1700}}.', he:'צאו מבולטניה עד ~{{u1430}}–{{u1500}}. כבישי הרים ועומסי ליקוי — קחו מרווח, הגיעו עד {{u1700}}.', es:'Sal de Boltaña hacia las {{u1430}}–{{u1500}}. Carreteras de montaña más tráfico del eclipse — date margen, llega a las {{u1700}}.'},
     chk3:{en:'Seat check on arrival: face 285° WNW, hold half a fist at arm\'s length — the Sun must clear everything on the horizon at that height.', he:'בדיקת מושב בהגעה: פנו ל־285° מערב־צפון־מערב, החזיקו חצי אגרוף ביד מושטת — השמש חייבת לעבור מעל כל מה שבאופק בגובה הזה.', es:'Al llegar: mira a 285° ONO, medio puño con el brazo extendido — el Sol debe librar todo lo que haya en el horizonte a esa altura.'},
     chk4:{en:'Water, snacks, layers (temperature drops noticeably near totality), headlamp for the drive back.', he:'מים, חטיפים, שכבות (הטמפרטורה יורדת באופן מורגש לקראת הליקוי), פנס ראש לנסיעה חזרה.', es:'Agua, algo de comer, abrigo (la temperatura baja notablemente cerca de la totalidad), frontal para la vuelta.'},
     chk5:{en:'Phone: shoot the horizon and the people, not the Sun. Your eyes get the corona; cameras without solar filters get damaged.', he:'טלפון: צלמו את האופק ואת האנשים, לא את השמש. העיניים מקבלות את העטרה; מצלמות בלי פילטר סולארי ניזוקות.', es:'Móvil: fotografía el horizonte y a la gente, no al Sol. Tus ojos se llevan la corona; las cámaras sin filtro solar se dañan.'},
     chk6:{en:'During totality: 10 seconds for photos, the rest for looking. Notice the 360° orange horizon and the planets.', he:'בזמן הליקוי המלא: 10 שניות לתמונות, השאר להסתכלות. שימו לב לאופק הכתום ב־360° ולכוכבי הלכת.', es:'Durante la totalidad: 10 segundos para fotos, el resto para mirar. Fíjate en el horizonte naranja de 360° y en los planetas.'},
-    's7-next':{
-      en:'Missed it? Spain gets a second chance: another total eclipse crosses the south on 2 August 2027. But the forecast says you won\'t need it.',
-      he:'פספסתם? לספרד יש הזדמנות שנייה: ליקוי מלא נוסף חוצה את הדרום ב־2 באוגוסט 2027. אבל לפי התחזית — לא תצטרכו אותה.',
-      es:'¿Te lo perdiste? España tiene segunda oportunidad: otro eclipse total cruza el sur el 2 de agosto de 2027. Pero el pronóstico dice que no la necesitarás.'},
 
     'foot-h':{en:'Sources &amp; live references', he:'מקורות והפניות', es:'Fuentes y referencias'},
     'foot-note':{
-      en:'Cloud forecast: Open-Meteo, retrieved 9 Aug 2026 · Location from your map pin · Sun position computed for 20:30 CEST',
-      he:'תחזית עננות: Open-Meteo, נשלף 9.8.2026 · מיקום לפי הסימון שלכם במפה · מיקום השמש חושב ל־20:30 שעון מקומי',
-      es:'Pronóstico de nubes: Open-Meteo, 9 ago 2026 · Ubicación de tu pin en el mapa · Posición solar calculada para las 20:30 CEST'},
+      en:'Cloud forecast: Open-Meteo, retrieved 9 Aug 2026 · Location from your map pin · Sun position computed for 18:30 UTC',
+      he:'תחזית עננות: Open-Meteo, נשלף 9.8.2026 · מיקום לפי הסימון שלכם במפה · מיקום השמש חושב ל־18:30 UTC',
+      es:'Pronóstico de nubes: Open-Meteo, 9 ago 2026 · Ubicación de tu pin en el mapa · Posición solar calculada para las 18:30 UTC'},
     credit:{en:'Made by', he:'נוצר על ידי', es:'Creado por'},
 
     'geo-lead':{
@@ -840,21 +867,19 @@
       he:'צל הירח נוגע רק ברצועה צרה של כדור הארץ. ב־12 באוגוסט 2026 הרצועה הזו עוברת מהקוטב הצפוני דרך מזרח גרינלנד ומערב איסלנד, יורדת באוקיינוס האטלנטי, ופוגעת ביבשה בצפון ספרד בדיוק בשקיעה — שם נגמר לה האור והליקוי מסתיים.',
       es:'La sombra de la Luna solo toca una franja estrecha del planeta. El 12 de agosto de 2026 esa franja va del Ártico a través del este de Groenlandia y el oeste de Islandia, baja por el Atlántico y toca tierra en el norte de España justo al atardecer — donde se le acaba la luz y el eclipse termina.'},
     's0-p2':{
-      en:'Israel is on the wrong side of the planet for it. By the time totality reaches Spain at 20:30, it is <strong>21:30 in Tel Aviv and the Sun set two hours earlier</strong> — the eclipse is not visible from Israel at all, not even as a partial. Being in Spain this week is the whole opportunity.',
-      he:'ישראל נמצאת בצד הלא נכון של הפלנטה בשביל זה. כשהליקוי המלא מגיע לספרד ב־20:30, השעה בתל אביב היא <strong>21:30 והשמש שקעה שעתיים קודם</strong> — הליקוי לא נראה מישראל בכלל, אפילו לא כליקוי חלקי. זה שאתם בספרד השבוע — זו כל ההזדמנות.',
-      es:'Israel está en el lado equivocado del planeta. Cuando la totalidad llega a España a las 20:30, en Tel Aviv son las <strong>21:30 y el Sol se puso dos horas antes</strong> — el eclipse no se ve desde Israel en absoluto, ni siquiera como parcial. Estar en España esta semana es toda la oportunidad.'},
+      en:'Israel is on the wrong side of the planet for it. By the time totality reaches Spain at {{u1830|ES}}, it is <strong>{{u1830|IL}} in Tel Aviv and the Sun set at {{u1629|IL}}</strong> — the eclipse is not visible from Israel at all, not even as a partial. Being in Spain this week is the whole opportunity.',
+      he:'ישראל נמצאת בצד הלא נכון של הפלנטה בשביל זה. כשהליקוי המלא מגיע לספרד ב־{{u1830|ES}}, השעה בתל אביב היא <strong>{{u1830|IL}} והשמש שקעה כבר ב־{{u1629|IL}}</strong> — הליקוי לא נראה מישראל בכלל, אפילו לא כליקוי חלקי. זה שאתם בספרד השבוע — זו כל ההזדמנות.',
+      es:'Israel está en el lado equivocado del planeta. Cuando la totalidad llega a España a las {{u1830|ES}}, en Tel Aviv son las <strong>{{u1830|IL}} y el Sol se puso a las {{u1629|IL}}</strong> — el eclipse no se ve desde Israel en absoluto, ni siquiera como parcial. Estar en España esta semana es toda la oportunidad.'},
     's0-cap':{
-      en:'Positions at 20:30 Spanish time (18:30 UTC), the moment of totality over Aragón. The amber band is drawn slightly wide to stay visible — in reality it is only about 290 km across. East of the dashed line the Sun has already set.',
-      he:'המצב ב־20:30 שעון ספרד (18:30 UTC), רגע הליקוי המלא מעל אראגון. הרצועה הכתומה מצוירת רחבה מעט מהמציאות כדי שתהיה נראית — בפועל רוחבה כ־290 ק״מ בלבד. ממזרח לקו המקווקו השמש כבר שקעה.',
-      es:'Posiciones a las 20:30 hora española (18:30 UTC), el momento de la totalidad sobre Aragón. La banda ámbar está dibujada algo más ancha para que se vea — en realidad mide unos 290 km. Al este de la línea discontinua el Sol ya se ha puesto.'},
+      en:'Positions at {{u1830|ES}} Spanish time (18:30 UTC), the moment of totality over Aragón. The amber band is drawn slightly wide to stay visible — in reality it is only about 290 km across. East of the dashed line the Sun has already set.',
+      he:'המצב ב־{{u1830|ES}} שעון ספרד (18:30 UTC), רגע הליקוי המלא מעל אראגון. הרצועה הכתומה מצוירת רחבה מעט מהמציאות כדי שתהיה נראית — בפועל רוחבה כ־290 ק״מ בלבד. ממזרח לקו המקווקו השמש כבר שקעה.',
+      es:'Posiciones a las {{u1830|ES}} hora española (18:30 UTC), el momento de la totalidad sobre Aragón. La banda ámbar está dibujada algo más ancha para que se vea — en realidad mide unos 290 km. Al este de la línea discontinua el Sol ya se ha puesto.'},
     g1:{en:'When', he:'מתי', es:'Cuándo'},
-    g1s:{en:'20:30 Spain · 21:30 Israel', he:'20:30 בספרד · 21:30 בישראל', es:'20:30 España · 21:30 Israel'},
+    g1s:{en:'{{u1830|ES}} Spain · {{u1830|IL}} Israel', he:'{{u1830|ES}} בספרד · {{u1830|IL}} בישראל', es:'{{u1830|ES}} España · {{u1830|IL}} Israel'},
     g2:{en:'Totality crosses', he:'הליקוי המלא חוצה', es:'La totalidad cruza'},
     g2v:{en:'Greenland · Iceland · N. Spain', he:'גרינלנד · איסלנד · צפון ספרד', es:'Groenlandia · Islandia · N. de España'},
     g3:{en:'Last one over Spain', he:'הפעם הקודמת בספרד', es:'El anterior sobre España'},
     g3s:{en:'121 years ago', he:'לפני 121 שנה', es:'hace 121 años'},
-    g4:{en:'Next one over Spain', he:'הפעם הבאה בספרד', es:'El siguiente sobre España'},
-    g4s:{en:'2 Aug, the far south', he:'2 באוגוסט, בדרום הרחוק', es:'2 de agosto, el extremo sur'},
     'g2-greenland':{en:'Greenland', he:'גרינלנד', es:'Groenlandia'},
     'g2-iceland':{en:'Iceland', he:'איסלנד', es:'Islandia'},
     'g2-paris':{en:'Paris', he:'פריז', es:'París'},
@@ -863,7 +888,14 @@
     'g2-israel':{en:'Israel ✗ nothing', he:'ישראל ✗ לא נראה', es:'Israel ✗ nada'},
     'g2-night':{en:'already night here', he:'כאן כבר לילה', es:'aquí ya es de noche'},
     'g2-lg1':{en:'total eclipse', he:'ליקוי מלא', es:'eclipse total'},
-    'g2-lg2':{en:'sunset line', he:'קו השקיעה', es:'línea del ocaso'}
+    'g2-lg2':{en:'sunset line', he:'קו השקיעה', es:'línea del ocaso'},
+    'tz-label':{en:'All times on this page:', he:'כל השעות בעמוד:', es:'Todas las horas de esta página:'},
+    'tz-es':{en:'Spain time', he:'שעון ספרד', es:'Hora de España'},
+    'tz-mine':{en:'My device', he:'השעון שלי', es:'Mi dispositivo'},
+    'warn-banner':{
+      en:'<strong>⚠ Never look at the Sun without certified eclipse glasses.</strong> A partially eclipsed Sun burns the retina without any pain, and the blindness it causes can be permanent. Glasses come off <em>only</em> during the ~1 minute of full totality — and go straight back on the instant the Sun reappears.',
+      he:'<strong>⚠ לעולם אל תסתכלו על השמש בלי משקפי ליקוי תקניים.</strong> שמש בליקוי חלקי שורפת את הרשתית בלי שום כאב, והעיוורון שהיא גורמת עלול להיות בלתי הפיך. מורידים את המשקפיים <em>רק</em> בדקה של הליקוי המלא — ומחזירים אותם מיד ברגע שהשמש חוזרת.',
+      es:'<strong>⚠ Nunca mires al Sol sin gafas de eclipse certificadas.</strong> Un Sol parcialmente eclipsado quema la retina sin dolor alguno, y la ceguera que provoca puede ser permanente. Las gafas se quitan <em>solo</em> durante el ~1 minuto de totalidad — y se vuelven a poner en cuanto reaparece el Sol.'}
   };
   var GEO = {
     locating:{en:'Locating…', he:'מאתר…', es:'Localizando…'},
@@ -906,8 +938,64 @@
     days:{en:'days', he:'ימים', es:'días'},
     totality:{en:'TOTALITY', he:'ליקוי מלא', es:'TOTALIDAD'},
     wnw:{en:'WNW · az 285°', he:'מערב־צפון־מערב · 285°', es:'ONO · az 285°'},
-    planets:{en:'planets appear', he:'כוכבי לכת נראים', es:'aparecen los planetas'}
+    planets:{en:'planets appear', he:'כוכבי לכת נראים', es:'aparecen los planetas'},
+    tzhint:{
+      en:'Your device clock is set to {tz}, where totality falls at {a} — in Spain it is {b}. Plan by Spain time.',
+      he:'שעון המכשיר שלכם מכוון ל־{tz}, ושם הליקוי המלא נופל ב־{a} — בספרד זה {b}. תכננו לפי שעון ספרד.',
+      es:'El reloj de tu dispositivo está en {tz}, donde la totalidad cae a las {a} — en España son las {b}. Planifica con la hora española.'}
   };
+
+  /* ═══ Times ═══
+     Every time on the page is authored as the UTC instant it actually happens at
+     ({{uHHMM}} tokens and data-utc attributes) and formatted here, so the page reads
+     correctly whatever zone the device is on. |ES and |IL pin a specific zone. */
+  var TZ_ES='Europe/Madrid', TZ_IL='Asia/Jerusalem';
+  var deviceTZ='';
+  try{ deviceTZ=Intl.DateTimeFormat().resolvedOptions().timeZone||''; }catch(e){}
+  var tzMode='local';
+  try{ tzMode=localStorage.getItem('eclipse-tz')||'local'; }catch(e){}
+  if(tzMode!=='es'&&tzMode!=='local') tzMode='local';
+  var fmtCache={};
+  function fmtFor(tz){
+    var key=tz||'@device';
+    if(!fmtCache[key]){
+      var o={hour:'2-digit',minute:'2-digit',hour12:false};
+      if(tz) o.timeZone=tz;
+      try{ fmtCache[key]=new Intl.DateTimeFormat('en-GB',o); }
+      catch(e){ fmtCache[key]=new Intl.DateTimeFormat('en-GB',{hour:'2-digit',minute:'2-digit',hour12:false}); }
+    }
+    return fmtCache[key];
+  }
+  function zoneFor(pin){
+    if(pin==='IL') return TZ_IL;
+    if(pin==='ES') return TZ_ES;
+    return tzMode==='es' ? TZ_ES : null;      // null → the device's own zone
+  }
+  function utcDate(hhmm){ return new Date(Date.UTC(2026,7,12,+hhmm.slice(0,2),+hhmm.slice(2))); }
+  function fmtUTC(hhmm,pin){ return fmtFor(zoneFor(pin)).format(utcDate(hhmm)); }
+  var TTOKEN=/\{\{u(\d{4})(?:\|(IL|ES))?\}\}/g;
+  function withTimes(html){
+    return html.replace(TTOKEN,function(_,t,z){ return '<span class="tval">'+fmtUTC(t,z)+'</span>'; });
+  }
+  function withTimesText(str){
+    return str.replace(TTOKEN,function(_,t,z){ return fmtUTC(t,z); });
+  }
+  function renderTimes(){
+    var els=document.querySelectorAll('[data-utc]');
+    for(var i=0;i<els.length;i++){
+      var pin=els[i].getAttribute('data-tz');
+      var a=fmtUTC(els[i].getAttribute('data-utc'), pin), b=els[i].getAttribute('data-utc2');
+      els[i].textContent = b ? a+'–'+fmtUTC(b,pin) : a;
+    }
+    var btns=document.querySelectorAll('.tzbtns button');
+    for(var j=0;j<btns.length;j++) btns[j].classList.toggle('on', btns[j].getAttribute('data-tz')===tzMode);
+    var hint=document.getElementById('tzhint');
+    if(hint){
+      var mine=fmtFor(null).format(utcDate('1830')), spain=fmtFor(TZ_ES).format(utcDate('1830'));
+      hint.textContent = (mine===spain) ? '' :
+        UI.tzhint[lang].replace('{tz}', deviceTZ||'—').replace('{a}', mine).replace('{b}', spain);
+    }
+  }
 
   /* Language lives in the URL (?lang=he|es|en) so any view is shareable.
      Precedence: URL → last choice → Hebrew. */
@@ -937,12 +1025,12 @@
     var nodes=document.querySelectorAll('[data-i18n]');
     for(var i=0;i<nodes.length;i++){
       var k=nodes[i].getAttribute('data-i18n');
-      if(I18N[k] && I18N[k][l]!=null) nodes[i].innerHTML=I18N[k][l];
+      if(I18N[k] && I18N[k][l]!=null) nodes[i].innerHTML=withTimes(I18N[k][l]);
     }
     var tnodes=document.querySelectorAll('[data-i18n-text]');
     for(var j=0;j<tnodes.length;j++){
       var k2=tnodes[j].getAttribute('data-i18n-text');
-      if(I18N[k2] && I18N[k2][l]!=null) tnodes[j].textContent=I18N[k2][l];
+      if(I18N[k2] && I18N[k2][l]!=null) tnodes[j].textContent=withTimesText(I18N[k2][l]);
     }
     var pnodes=document.querySelectorAll('[data-i18n-ph]');
     for(var p=0;p<pnodes.length;p++){
@@ -955,6 +1043,7 @@
       btns[b].classList.toggle('on', on);
       if(on) btns[b].setAttribute('aria-current','true'); else btns[b].removeAttribute('aria-current');
     }
+    renderTimes();
     syncSim();
     if(lastFix) renderGeo(lastFix.lat, lastFix.lon);
   }
@@ -974,7 +1063,8 @@
   /* ═══ Sky simulator — Monegros seat: totality 20:30, sun ~5.4°, sunset 21:04 ═══ */
   var cv=document.getElementById('skycv'), ctx=cv.getContext('2d');
   var W=cv.width, H=cv.height, HOR=H*0.82;
-  var C1=7, MID=60, SUNSET=94, T_END=98; // minutes from 19:30
+  var SIM_START_UTC=Date.UTC(2026,7,12,17,30);   // 19:30 in Spain
+  var C1=7, MID=60, SUNSET=94, T_END=98;         // minutes from SIM_START_UTC
   var slider=document.getElementById('tslider'), btn=document.getElementById('playbtn');
   var roT=document.getElementById('ro-time'), roC=document.getElementById('ro-cov'), roA=document.getElementById('ro-alt');
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1098,8 +1188,7 @@
     ctx.fillText(UI.wnw[lang], sx, HOR+28);
     ctx.textAlign='left';
 
-    var mins=19*60+30+t, hh=Math.floor(mins/60), mm2=Math.floor(mins%60);
-    roT.textContent=pad(hh)+':'+pad(mm2);
+    roT.textContent=fmtFor(zoneFor()).format(new Date(SIM_START_UTC + Math.round(t)*60000));
     roC.textContent= total ? UI.totality[lang] : (ob*100).toFixed(ob>0.99?1:0)+'%';
     roA.textContent=alt.toFixed(0)+'°';
   }
@@ -1134,6 +1223,14 @@
   });
   window.addEventListener('popstate', function(){
     applyLang(langFromUrl() || 'he', false);
+  });
+  var tzbar=document.querySelector('.tzbar');
+  if(tzbar) tzbar.addEventListener('click', function(e){
+    var t=e.target.closest('button[data-tz]');
+    if(!t) return;
+    tzMode=t.getAttribute('data-tz');
+    try{ localStorage.setItem('eclipse-tz', tzMode); }catch(err){}
+    applyLang(lang, false);
   });
 
   /* ═══ Where is the band? ═══
