@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Total solar eclipse 12 Aug 2026 — where to go in Spain, timings, and a live simulator.">
+<meta name="description" content="Total solar eclipse 12 Aug 2026 — where on Earth it is visible, where to go in Spain, timings and a live simulator.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌒</text></svg>">
 <title>Totalidad · 12.8.2026</title>
 <style>
@@ -58,10 +58,11 @@
   /* ─── Language switcher ─── */
   .langbar{position:fixed; top:14px; inset-inline-end:14px; z-index:60; display:flex; gap:2px;
     background:rgba(6,8,15,.78); border:1px solid var(--line); padding:4px; backdrop-filter:blur(6px)}
-  .langbar button{font-family:var(--mono); font-size:12.5px; letter-spacing:.06em;
-    background:none; border:none; color:var(--muted); padding:6px 12px; cursor:pointer}
-  .langbar button:hover{color:var(--corona)}
-  .langbar button.on{background:var(--solar); color:#171004}
+  .langbar a{font-family:var(--mono); font-size:12.5px; letter-spacing:.06em; display:block;
+    background:none; border:none; color:var(--muted); padding:6px 12px; cursor:pointer;
+    text-decoration:none}
+  .langbar a:hover{color:var(--corona); text-decoration:none}
+  .langbar a.on{background:var(--solar); color:#171004}
 
   /* ─── Hero ─── */
   .hero{position:relative; min-height:92vh; display:flex; flex-direction:column;
@@ -211,7 +212,13 @@
   .hero .sub{line-height:1.9; color:var(--corona);
     text-shadow:0 2px 16px rgba(5,6,12,.95), 0 0 34px rgba(5,6,12,.85)}
   .strip .v small{display:block; margin-top:4px}
+  .strip.strip-flat{margin-top:28px}
+  .strip.strip-flat .v{font-size:21px}
+  /* Bidi: the day count must be isolated from the clock, or Hebrew reordering
+     glues them into one number ("3" + "17:26:41" reading as "317:26:41"). */
   #countdown{direction:ltr; unicode-bidi:isolate}
+  #countdown .cd-d{unicode-bidi:isolate; margin-inline-end:.15em}
+  [dir="rtl"] #countdown{text-align:right}
 
   /* ─── Mobile ─── */
   @media(max-width:700px){
@@ -221,7 +228,7 @@
     p{max-width:none}
 
     .langbar{top:10px; inset-inline-end:10px; padding:3px}
-    .langbar button{font-size:11.5px; padding:5px 9px}
+    .langbar a{font-size:11.5px; padding:5px 9px}
 
     .hero{min-height:auto; padding-top:88px}
     .hero-disc{top:104px; width:min(200px,50vw); height:min(200px,50vw);
@@ -258,9 +265,9 @@
 <body>
 
 <nav class="langbar" aria-label="Language">
-  <button type="button" data-lang="he" lang="he">עברית</button>
-  <button type="button" data-lang="es" lang="es">ES</button>
-  <button type="button" data-lang="en" lang="en">EN</button>
+  <a href="?lang=he" data-lang="he" lang="he" hreflang="he">עברית</a>
+  <a href="?lang=es" data-lang="es" lang="es" hreflang="es">ES</a>
+  <a href="?lang=en" data-lang="en" lang="en" hreflang="en">EN</a>
 </nav>
 
 <div class="hero">
@@ -280,8 +287,130 @@
   </div>
 </div>
 
+<section id="globe"><div class="wrap">
+  <p class="eyebrow" data-i18n="s0-eyebrow">01 · Where on Earth</p>
+  <h2 data-i18n="s0-h2">From home you would have seen nothing at all</h2>
+  <p data-i18n="s0-p1">The Moon's shadow touches only a narrow ribbon of the planet. On 12 August 2026 that ribbon
+  runs from the Arctic across eastern Greenland and western Iceland, down the Atlantic, and makes landfall in
+  northern Spain right at sunset — where it runs out of daylight and the eclipse ends.</p>
+  <p data-i18n="s0-p2">Israel is on the wrong side of the planet for it. By the time totality reaches Spain at
+  20:30, it is <strong>21:30 in Tel Aviv and the Sun set two hours earlier</strong> — the eclipse is not visible from
+  Israel at all, not even as a partial. Being in Spain this week is the whole opportunity.</p>
+  <div class="figure">
+    <svg viewBox="0 0 900 520" role="img" aria-label="Map from Greenland to the Middle East showing the band of totality crossing Iceland and northern Spain, with Israel on the night side">
+      <defs>
+        <linearGradient id="nightG" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#04050A" stop-opacity=".15"/>
+          <stop offset="100%" stop-color="#04050A" stop-opacity=".72"/>
+        </linearGradient>
+      </defs>
+      <rect width="900" height="520" fill="#080C1A"/>
+      <!-- graticule -->
+      <g stroke="#141A30" stroke-width="1">
+        <path d="M0,104 H900 M0,208 H900 M0,312 H900 M0,416 H900"/>
+        <path d="M180,0 V520 M360,0 V520 M540,0 V520 M720,0 V520"/>
+      </g>
+      <!-- land -->
+      <g fill="#18223E" stroke="#3B4970" stroke-width="1.2">
+        <path d="M135.0,156.0 L162.0,145.6 L180.0,124.8 L198.0,104.0 L243.0,72.8 L279.0,52.0 L315.0,41.6 L342.0,31.2 L360.0,10.4 L378.0,-10.4 L360.0,-31.2 L270.0,-52.0 L135.0,-72.8 L18.0,-72.8 L0.0,-31.2 L45.0,0.0 L72.0,52.0 L90.0,93.6 L108.0,135.2 L135.0,156.0 Z"/>
+        <path d="M319.5,98.8 L337.5,88.4 L378.0,91.5 L409.5,89.4 L418.5,98.8 L405.0,112.3 L378.0,120.6 L351.0,116.5 L335.7,111.3 L319.5,98.8 Z"/>
+        <path d="M488.7,259.0 L508.5,253.8 L531.0,252.7 L552.6,245.4 L544.5,229.8 L538.2,222.6 L530.1,212.2 L525.6,201.8 L513.0,193.4 L522.0,179.9 L508.5,170.6 L495.0,170.6 L487.8,182.0 L490.5,192.4 L495.0,202.8 L508.5,211.1 L501.3,224.6 L504.0,230.9 L492.3,242.3 L508.5,245.4 L488.7,259.0 Z"/>
+        <path d="M486.0,237.1 L484.2,224.6 L486.0,217.4 L472.5,205.9 L459.0,215.3 L450.0,223.6 L451.8,234.0 L454.5,244.4 L472.5,240.2 L486.0,237.1 Z"/>
+        <path d="M583.2,175.8 L589.5,161.2 L584.1,140.4 L603.0,124.8 L634.5,109.2 L666.0,88.4 L702.0,57.2 L747.0,46.8 L792.0,42.6 L819.0,52.0 L805.5,67.6 L765.0,93.6 L756.0,95.7 L733.5,119.6 L706.5,145.6 L697.5,166.4 L688.5,192.4 L670.5,203.8 L652.5,194.5 L643.5,176.8 L616.5,174.7 L583.2,175.8 Z"/>
+        <path d="M456.3,332.8 L459.0,344.2 L459.9,361.9 L454.5,377.5 L459.9,395.2 L473.4,393.1 L483.3,397.3 L489.6,405.6 L500.4,398.3 L521.1,398.3 L533.7,389.0 L537.3,376.5 L541.8,375.4 L540.0,365.0 L548.1,353.6 L568.8,344.2 L584.1,328.6 L600.3,331.8 L619.2,318.2 L632.7,323.4 L640.8,339.0 L657.0,351.5 L666.0,357.8 L678.6,364.0 L694.8,358.8 L706.5,363.0 L685.8,344.2 L666.0,343.2 L662.4,326.6 L651.6,320.3 L662.4,306.8 L676.8,320.3 L688.5,330.7 L705.6,335.9 L715.5,344.2 L713.7,356.7 L729.0,368.2 L747.0,379.6 L753.3,385.8 L747.0,401.4 L765.0,395.2 L778.5,381.7 L783.0,364.0 L801.0,353.6 L819.0,351.5 L855.0,343.2 L882.0,353.6 L900.0,348.4 L900.0,260.0 L855.0,239.2 L810.0,208.0 L774.0,187.2 L758.7,177.8 L729.0,209.0 L707.4,212.2 L667.8,217.4 L652.5,213.2 L637.2,214.2 L629.1,209.0 L613.8,208.0 L616.5,219.4 L602.1,223.6 L581.4,229.8 L568.8,245.4 L554.4,250.6 L541.8,266.2 L526.5,273.5 L496.8,276.6 L520.2,288.1 L529.2,298.5 L530.1,305.8 L529.2,315.1 L523.8,328.6 L505.8,327.6 L487.8,326.6 L468.0,326.6 L456.3,332.8 Z"/>
+        <path d="M451.8,452.4 L456.3,441.0 L477.9,426.4 L491.4,406.6 L513.9,412.9 L540.0,405.6 L567.0,397.3 L594.0,395.2 L616.5,393.1 L631.8,393.1 L639.0,412.9 L634.5,428.5 L643.5,434.7 L675.0,443.0 L711.0,464.9 L720.0,447.2 L747.0,445.1 L765.0,452.4 L783.0,454.5 L809.1,455.5 L828.0,456.6 L847.8,454.5 L851.4,447.2 L855.0,435.8 L863.1,420.2 L865.8,405.6 L900.0,400.4 L900.0,530.4 L396.0,530.4 L423.0,494.0 L441.0,483.6 L451.8,452.4 Z"/>
+      </g>
+      <!-- band of totality -->
+      <path d="M-319.5,-3.9 L-138.0,-61.5 L45.2,-77.4 L185.0,-55.8 L262.0,-0.8 L308.9,53.3 L336.9,96.3 L359.6,138.3 L386.2,184.5 L417.2,230.5 L448.2,271.4 L470.0,296.6 L495.8,322.7 L499.7,323.4 L513.5,327.3 L528.6,333.7 L545.6,343.0 L562.0,347.1 L575.7,351.2 L567.3,380.0 L554.0,376.1 L534.4,370.8 L515.4,360.6 L503.5,355.6 L490.3,351.9 L476.2,345.4 L448.0,317.0 L424.8,290.2 L392.8,247.9 L360.8,200.3 L333.4,152.9 L311.1,111.7 L285.1,71.5 L242.0,21.6 L175.0,-27.4 L44.8,-47.4 L-132.0,-32.1 L-310.5,24.7 Z"
+            fill="rgba(242,169,59,.30)" stroke="rgba(242,169,59,.85)" stroke-width="1.4"/>
+      <path d="M-315.0,10.4 L-135.0,-46.8 L45.0,-62.4 L180.0,-41.6 L252.0,10.4 L297.0,62.4 L324.0,104.0 L346.5,145.6 L373.5,192.4 L405.0,239.2 L436.5,280.8 L459.0,306.8 L486.0,334.0 L495.0,337.7 L508.5,341.4 L522.0,347.2 L540.0,356.9 L558.0,361.6 L571.5,365.6"
+            fill="none" stroke="rgba(255,225,160,.6)" stroke-width="1.2" stroke-dasharray="6 5"/>
+      <!-- night side -->
+      <path d="M900,52 L874.8,62.4 L829.8,83.2 L793.8,104.0 L764.1,124.8 L739.8,145.6 L718.2,166.4 L699.3,187.2 L683.1,208.0 L667.8,228.8 L654.3,249.6 L642.6,270.4 L631.8,291.2 L621.0,312.0 L612.0,332.8 L603.0,353.6 L594.9,374.4 L586.8,395.2 L579.6,416.0 L572.4,436.8 L565.2,457.6 L558.9,478.4 L552.6,499.2 L547.2,520.0 L900,520 Z"
+            fill="url(#nightG)" stroke="rgba(130,139,166,.45)" stroke-width="1" stroke-dasharray="5 4"/>
+      <text x="700" y="470" fill="#6E7796" font-size="13" text-anchor="middle" font-family="-apple-system,Segoe UI,Roboto,sans-serif" data-i18n-text="g2-night">already night here</text>
+      <!-- places -->
+      <g font-family="-apple-system,Segoe UI,Roboto,sans-serif" font-size="13">
+        <text x="150" y="95" fill="#7C86A6" text-anchor="middle" data-i18n-text="g2-greenland">Greenland</text>
+        <circle cx="343" cy="113" r="3.5" fill="#F2A93B"/>
+        <path d="M349,112 L428,101" stroke="#5A6280" stroke-width="1"/>
+        <text x="433" y="105" fill="#F0EADB" text-anchor="start" data-i18n-text="g2-iceland">Iceland</text>
+        <circle cx="561" cy="272" r="3" fill="#828BA6"/>
+        <text x="568" y="269" fill="#828BA6" font-size="12" text-anchor="start" data-i18n-text="g2-paris">Paris</text>
+        <circle cx="652" cy="344" r="3" fill="#828BA6"/>
+        <text x="659" y="341" fill="#828BA6" font-size="12" text-anchor="start" data-i18n-text="g2-rome">Rome</text>
+        <!-- Spain: the destination -->
+        <path d="M534,344 L470,318" stroke="#F0EADB" stroke-width="1.2"/>
+        <circle cx="539" cy="348" r="7.5" fill="none" stroke="#F0EADB" stroke-width="1.8"/>
+        <circle cx="539" cy="348" r="2.8" fill="#F0EADB"/>
+        <text x="465" y="315" fill="#F0EADB" font-size="14" font-weight="700" text-anchor="end" data-i18n-text="g2-spain">N. Spain ★ you</text>
+        <!-- Israel: nothing -->
+        <circle cx="853" cy="446" r="4" fill="#E4604F"/>
+        <path d="M848,442 L800,424" stroke="#E4604F" stroke-width="1.2"/>
+        <text x="796" y="421" fill="#E4604F" font-size="13" font-weight="700" text-anchor="end" data-i18n-text="g2-israel">Israel ✗ nothing</text>
+      </g>
+      <!-- legend -->
+      <g font-family="-apple-system,Segoe UI,Roboto,sans-serif" font-size="12.5">
+        <rect x="16" y="446" width="250" height="58" fill="rgba(6,8,15,.82)" stroke="#28324F"/>
+        <rect x="28" y="459" width="22" height="10" fill="rgba(242,169,59,.45)" stroke="rgba(242,169,59,.9)"/>
+        <text x="58" y="468" fill="#CDD2E3" data-i18n-text="g2-lg1">total eclipse</text>
+        <path d="M28,486 h22" stroke="rgba(130,139,166,.7)" stroke-width="1.4" stroke-dasharray="5 4"/>
+        <text x="58" y="490" fill="#CDD2E3" data-i18n-text="g2-lg2">sunset line</text>
+      </g>
+    </svg>
+    <div class="figcap" data-i18n="s0-cap">Positions at 20:30 Spanish time (18:30 UTC), the moment of totality over Aragón. The amber band is drawn slightly wide to stay visible — in reality it is only about 290 km across. East of the dashed line the Sun has already set.</div>
+  </div>
+
+  <div class="strip strip-flat">
+    <div><div class="k" data-i18n="g1">When</div><div class="v"><span class="num">12.8.2026</span> <small data-i18n="g1s">20:30 Spain · 21:30 Israel</small></div></div>
+    <div><div class="k" data-i18n="g2">Totality crosses</div><div class="v" data-i18n="g2v">Greenland · Iceland · N. Spain</div></div>
+    <div><div class="k" data-i18n="g3">Last one over Spain</div><div class="v"><span class="num">1905</span> <small data-i18n="g3s">121 years ago</small></div></div>
+    <div><div class="k" data-i18n="g4">Next one over Spain</div><div class="v"><span class="num">2027</span> <small data-i18n="g4s">2 Aug, the far south</small></div></div>
+  </div>
+</div></section>
+
+<section id="geometry"><div class="wrap">
+  <p class="eyebrow" data-i18n="s5-eyebrow">02 · Sun · Moon · Earth</p>
+  <h2 data-i18n="s5-h2">Why this evening is special</h2>
+  <p data-i18n="s5-p1">At new Moon on 12 August the three bodies align exactly: the Moon slides between Earth and Sun and
+  its cone-shaped shadow — the <strong>umbra</strong> — just reaches Earth's surface. Spain catches the very
+  end of the shadow's track across the planet (Arctic → Greenland → Iceland → Iberia), which is why
+  totality here happens at sunset with the Sun nearly on the horizon.</p>
+  <div class="figure">
+    <svg viewBox="0 0 900 320" role="img" aria-label="Sun, Moon and Earth aligned, with the umbral shadow cone touching Spain">
+      <rect width="900" height="320" fill="#05060B"/>
+      <defs>
+        <radialGradient id="sunG" cx="35%" cy="35%">
+          <stop offset="0%" stop-color="#FFE9B8"/><stop offset="55%" stop-color="#F2A93B"/><stop offset="100%" stop-color="#C97A1E"/>
+        </radialGradient>
+        <radialGradient id="earthG" cx="35%" cy="35%">
+          <stop offset="0%" stop-color="#7FA8CF"/><stop offset="70%" stop-color="#2E5C8A"/><stop offset="100%" stop-color="#17334F"/>
+        </radialGradient>
+      </defs>
+      <circle cx="118" cy="160" r="92" fill="url(#sunG)"/>
+      <circle cx="118" cy="160" r="92" fill="none" stroke="rgba(242,169,59,.35)" stroke-width="14" opacity=".5"/>
+      <text x="118" y="288" fill="#8B93AE" font-size="13" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" data-i18n-text="g-sun">SUN</text>
+      <path d="M141,72 L505,180 L820,320 L820,0 L505,140 Z" fill="rgba(130,139,166,.07)"/>
+      <path d="M141,72 L505,140 L820,10" stroke="rgba(130,139,166,.25)" stroke-width="1" stroke-dasharray="5 5" fill="none"/>
+      <path d="M141,248 L505,180 L820,310" stroke="rgba(130,139,166,.25)" stroke-width="1" stroke-dasharray="5 5" fill="none"/>
+      <path d="M505,140 L790,152 L505,180 Z" fill="rgba(6,8,15,.92)" stroke="rgba(240,234,219,.3)" stroke-width="1"/>
+      <circle cx="505" cy="160" r="21" fill="#3A3F52" stroke="#5A6280" stroke-width="1.5"/>
+      <text x="505" y="288" fill="#8B93AE" font-size="13" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" data-i18n-text="g-moon">MOON (new)</text>
+      <circle cx="800" cy="160" r="62" fill="url(#earthG)"/>
+      <path d="M760,120 q18,-8 34,2 q14,10 30,4" stroke="rgba(220,230,240,.35)" stroke-width="7" fill="none" stroke-linecap="round"/>
+      <path d="M765,196 q20,10 42,4" stroke="rgba(220,230,240,.3)" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <circle cx="789" cy="151" r="4.5" fill="#F2A93B"/>
+      <text x="775" y="136" fill="#F2A93B" font-size="12" font-family="ui-monospace,Menlo,monospace" data-i18n-text="g-spain">Spain</text>
+      <text x="800" y="288" fill="#8B93AE" font-size="13" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" data-i18n-text="g-earth">EARTH</text>
+      <text x="640" y="132" fill="#8B93AE" font-size="12" font-family="ui-monospace,Menlo,monospace" data-i18n-text="g-umbra">umbra → totality</text>
+      <text x="640" y="248" fill="#5A6280" font-size="12" font-family="ui-monospace,Menlo,monospace" data-i18n-text="g-pen">penumbra → partial (Boltaña)</text>
+    </svg>
+    <div class="figcap" data-i18n="s5-cap">Not to scale. Inside the dark umbra cone you see totality; in the wide penumbra (where Boltaña sits) only a partial eclipse. The umbra's footprint on the ground is the ~290 km amber band on the map.</div>
+  </div>
+</div></section>
+
 <section id="problem"><div class="wrap">
-  <p class="eyebrow" data-i18n="s1-eyebrow">01 · The problem</p>
+  <p class="eyebrow" data-i18n="s1-eyebrow">03 · The problem</p>
   <h2 data-i18n="s1-h2">You are about 45 km too far north</h2>
   <p data-i18n="s1-p1">Your pin puts you at <strong>Boltaña / Aínsa in the Sobrarbe</strong>, high in the Pyrenees — and the
   <em>northern</em> limit of totality passes south of you, roughly through Huesca city toward Lleida.
@@ -309,7 +438,7 @@
 </div></section>
 
 <section id="map"><div class="wrap">
-  <p class="eyebrow" data-i18n="s2-eyebrow">02 · Where the eclipse is</p>
+  <p class="eyebrow" data-i18n="s2-eyebrow">04 · Where the eclipse is</p>
   <h2 data-i18n="s2-h2">The shadow crosses Spain northwest to southeast</h2>
   <p data-i18n="s2-p1">The Moon's umbra makes landfall in Galicia at ~20:26 and sweeps to the Balearics by ~20:33 —
   the whole country is crossed in about seven minutes. Inside the amber band the Sun goes fully dark for up
@@ -339,16 +468,22 @@
         <path d="M60,120 L170,140"/><path d="M170,140 L159,132 M170,140 L158,147"/>
       </g>
       <text x="60" y="111" fill="#8B93AE" font-size="11" font-family="ui-monospace,Menlo,monospace" data-i18n-text="m-arrow">shadow 20:26 → 20:33</text>
-      <text x="330" y="280" fill="#F2A93B" font-size="11" font-family="ui-monospace,Menlo,monospace" data-i18n-text="m-slimit">southern limit</text>
-      <text x="452" y="170" fill="#B58230" font-size="11" font-family="ui-monospace,Menlo,monospace" data-i18n-text="m-nlimit">northern limit of totality</text>
-      <text x="180" y="122" fill="#B58230" font-size="10.5" font-family="ui-monospace,Menlo,monospace" data-i18n-text="m-center">centerline · longest totality</text>
+      <g font-family="-apple-system,Segoe UI,Roboto,sans-serif" font-size="12">
+        <rect x="392" y="386" width="216" height="76" fill="rgba(6,8,15,.85)" stroke="#1D2440"/>
+        <rect x="404" y="399" width="22" height="10" fill="rgba(242,169,59,.35)" stroke="rgba(242,169,59,.9)"/>
+        <text x="434" y="408" fill="#CDD2E3" data-i18n-text="m-lg1">band of totality</text>
+        <path d="M404,425 h22" stroke="rgba(242,169,59,.6)" stroke-width="1.4" stroke-dasharray="6 4"/>
+        <text x="434" y="429" fill="#CDD2E3" data-i18n-text="m-center">centerline</text>
+        <path d="M404,446 h22" stroke="rgba(242,169,59,.9)" stroke-width="2"/>
+        <text x="434" y="450" fill="#CDD2E3" data-i18n-text="m-nlimit">edge of the band</text>
+      </g>
       <g fill="#F0EADB" font-size="11.5" font-family="-apple-system,Segoe UI,Roboto,sans-serif">
         <circle cx="67" cy="60" r="3" fill="#F2A93B"/><text x="76" y="57" data-i18n-text="c-cor">A Coruña</text>
         <circle cx="175" cy="61" r="3" fill="#F2A93B"/><text x="160" y="78" data-i18n-text="c-ovi">Oviedo</text>
         <circle cx="297" cy="66" r="3" fill="#F2A93B"/><text x="305" y="63" data-i18n-text="c-bil">Bilbao</text>
         <circle cx="265" cy="121" r="3" fill="#F2A93B"/><text x="273" y="118" data-i18n-text="c-bur">Burgos</text>
         <circle cx="383" cy="160" r="3" fill="#F2A93B"/><text x="360" y="150" data-i18n-text="c-zar">Zaragoza</text>
-        <circle cx="403" cy="127" r="3" fill="#C97A1E"/><text x="373" y="115" data-i18n-text="c-hue">Huesca</text>
+        <circle cx="403" cy="127" r="3" fill="#C97A1E"/><text x="396" y="120" text-anchor="end" data-i18n-text="c-hue">Huesca</text>
         <circle cx="446" cy="156" r="3" fill="#C97A1E"/><text x="455" y="160" data-i18n-text="c-lle">Lleida · 25s</text>
         <circle cx="404" cy="282" r="3" fill="#F2A93B"/><text x="352" y="286" data-i18n-text="c-val">Valencia</text>
         <circle cx="531" cy="269" r="3" fill="#F2A93B"/><text x="540" y="285" data-i18n-text="c-palma">Palma</text>
@@ -358,12 +493,14 @@
       <g>
         <circle cx="414" cy="162" r="7" fill="none" stroke="#F0EADB" stroke-width="1.6"/>
         <circle cx="414" cy="162" r="2.6" fill="#F0EADB"/>
-        <text x="398" y="182" fill="#F0EADB" font-size="12" font-weight="600" font-family="-apple-system,Segoe UI,Roboto,sans-serif" data-i18n-text="c-buj">Bujaraloz ★ your seat</text>
+        <path d="M410,168 L402,186" stroke="#F0EADB" stroke-width="1"/>
+        <text x="400" y="192" text-anchor="end" fill="#F0EADB" font-size="12" font-weight="600" font-family="-apple-system,Segoe UI,Roboto,sans-serif" data-i18n-text="c-buj">Bujaraloz ★ your seat</text>
       </g>
       <!-- You: Boltaña, outside the band -->
       <g>
         <circle cx="423" cy="110" r="4.5" fill="#E4604F"/>
-        <text x="432" y="106" fill="#E4604F" font-size="12.5" font-weight="600" font-family="-apple-system,Segoe UI,Roboto,sans-serif" data-i18n-text="c-bol">BOLTAÑA — you · outside!</text>
+        <path d="M428,106 L438,94" stroke="#E4604F" stroke-width="1"/>
+        <text x="441" y="91" fill="#E4604F" font-size="12.5" font-weight="600" font-family="-apple-system,Segoe UI,Roboto,sans-serif" data-i18n-text="c-bol">BOLTAÑA — you · outside!</text>
         <path d="M423,115 L425,133 L414,155" stroke="#E4604F" stroke-width="1.4" stroke-dasharray="3 3" fill="none"/>
         <text x="428" y="140" fill="#B0685E" font-size="10" font-family="ui-monospace,Menlo,monospace" data-i18n-text="m-a1">~135 km</text>
       </g>
@@ -373,7 +510,7 @@
 </div></section>
 
 <section id="seats"><div class="wrap">
-  <p class="eyebrow" data-i18n="s3-eyebrow">03 · Where you should sit</p>
+  <p class="eyebrow" data-i18n="s3-eyebrow">05 · Where you should sit</p>
   <h2 data-i18n="s3-h2">Pick your seat: dead-flat western horizon, deep in the band</h2>
   <p data-i18n="s3-p1">Two constraints decide everything. <strong>(1) Be inside the band</strong> — further from the northern
   edge means longer totality. <strong>(2) The Sun will be only ~5° high, bearing 285° (WNW)</strong> — half a fist
@@ -431,7 +568,7 @@
 </div></section>
 
 <section id="timeline"><div class="wrap">
-  <p class="eyebrow" data-i18n="s4-eyebrow">04 · The evening, minute by minute</p>
+  <p class="eyebrow" data-i18n="s4-eyebrow">06 · The evening, minute by minute</p>
   <h2 data-i18n="s4-h2">Timeline for the Monegros seat</h2>
   <div class="tbl"><table>
     <thead><tr><th data-i18n="th1">Local time</th><th data-i18n="th2">Event</th><th data-i18n="th3">What you see</th></tr></thead>
@@ -448,48 +585,9 @@
   <p class="muted" style="margin-top:16px" data-i18n="s4-note">If you stayed in Boltaña: partial only, max ~99.5% at 20:30, Sun sets eclipsed ~21:04 — and the mountains will likely hide even that. Drive.</p>
 </div></section>
 
-<section id="geometry"><div class="wrap">
-  <p class="eyebrow" data-i18n="s5-eyebrow">05 · Sun · Moon · Earth</p>
-  <h2 data-i18n="s5-h2">Why this evening is special</h2>
-  <p data-i18n="s5-p1">At new Moon on 12 August the three bodies align exactly: the Moon slides between Earth and Sun and
-  its cone-shaped shadow — the <strong>umbra</strong> — just reaches Earth's surface. Spain catches the very
-  end of the shadow's track across the planet (Arctic → Greenland → Iceland → Iberia), which is why
-  totality here happens at sunset with the Sun nearly on the horizon.</p>
-  <div class="figure">
-    <svg viewBox="0 0 900 320" role="img" aria-label="Sun, Moon and Earth aligned, with the umbral shadow cone touching Spain">
-      <rect width="900" height="320" fill="#05060B"/>
-      <defs>
-        <radialGradient id="sunG" cx="35%" cy="35%">
-          <stop offset="0%" stop-color="#FFE9B8"/><stop offset="55%" stop-color="#F2A93B"/><stop offset="100%" stop-color="#C97A1E"/>
-        </radialGradient>
-        <radialGradient id="earthG" cx="35%" cy="35%">
-          <stop offset="0%" stop-color="#7FA8CF"/><stop offset="70%" stop-color="#2E5C8A"/><stop offset="100%" stop-color="#17334F"/>
-        </radialGradient>
-      </defs>
-      <circle cx="118" cy="160" r="92" fill="url(#sunG)"/>
-      <circle cx="118" cy="160" r="92" fill="none" stroke="rgba(242,169,59,.35)" stroke-width="14" opacity=".5"/>
-      <text x="118" y="288" fill="#8B93AE" font-size="13" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" data-i18n-text="g-sun">SUN</text>
-      <path d="M141,72 L505,180 L820,320 L820,0 L505,140 Z" fill="rgba(130,139,166,.07)"/>
-      <path d="M141,72 L505,140 L820,10" stroke="rgba(130,139,166,.25)" stroke-width="1" stroke-dasharray="5 5" fill="none"/>
-      <path d="M141,248 L505,180 L820,310" stroke="rgba(130,139,166,.25)" stroke-width="1" stroke-dasharray="5 5" fill="none"/>
-      <path d="M505,140 L790,152 L505,180 Z" fill="rgba(6,8,15,.92)" stroke="rgba(240,234,219,.3)" stroke-width="1"/>
-      <circle cx="505" cy="160" r="21" fill="#3A3F52" stroke="#5A6280" stroke-width="1.5"/>
-      <text x="505" y="288" fill="#8B93AE" font-size="13" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" data-i18n-text="g-moon">MOON (new)</text>
-      <circle cx="800" cy="160" r="62" fill="url(#earthG)"/>
-      <path d="M760,120 q18,-8 34,2 q14,10 30,4" stroke="rgba(220,230,240,.35)" stroke-width="7" fill="none" stroke-linecap="round"/>
-      <path d="M765,196 q20,10 42,4" stroke="rgba(220,230,240,.3)" stroke-width="6" fill="none" stroke-linecap="round"/>
-      <circle cx="789" cy="151" r="4.5" fill="#F2A93B"/>
-      <text x="775" y="136" fill="#F2A93B" font-size="12" font-family="ui-monospace,Menlo,monospace" data-i18n-text="g-spain">Spain</text>
-      <text x="800" y="288" fill="#8B93AE" font-size="13" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" data-i18n-text="g-earth">EARTH</text>
-      <text x="640" y="132" fill="#8B93AE" font-size="12" font-family="ui-monospace,Menlo,monospace" data-i18n-text="g-umbra">umbra → totality</text>
-      <text x="640" y="248" fill="#5A6280" font-size="12" font-family="ui-monospace,Menlo,monospace" data-i18n-text="g-pen">penumbra → partial (Boltaña)</text>
-    </svg>
-    <div class="figcap" data-i18n="s5-cap">Not to scale. Inside the dark umbra cone you see totality; in the wide penumbra (where Boltaña sits) only a partial eclipse. The umbra's footprint on the ground is the ~290 km amber band on the map.</div>
-  </div>
-</div></section>
 
 <section id="sim"><div class="wrap">
-  <p class="eyebrow" data-i18n="s6-eyebrow">06 · Simulation</p>
+  <p class="eyebrow" data-i18n="s6-eyebrow">07 · Simulation</p>
   <h2 data-i18n="s6-h2">How it will look from your seat</h2>
   <p data-i18n="s6-p1">Facing west-northwest from the Monegros steppe. Drag the slider or press play to run the evening —
   watch the light die in the final minute before 20:30. (Schematic rendering; the real thing is better.)</p>
@@ -504,7 +602,7 @@
 </div></section>
 
 <section id="safety"><div class="wrap">
-  <p class="eyebrow" data-i18n="s7-eyebrow">07 · Safety &amp; kit</p>
+  <p class="eyebrow" data-i18n="s7-eyebrow">08 · Safety &amp; kit</p>
   <h2 data-i18n="s7-h2">Protect your eyes — one exception only</h2>
   <div class="callout red">
     <p data-i18n="s7-call"><strong>Certified eclipse glasses (ISO 12312-2) for every partial phase</strong> — that's all of
@@ -573,7 +671,7 @@
       he:'זהו מפגש של פעם בחיים עבור ספרד — הליקוי המלא האחרון שנראה מחצי האי היה ב־1905, והפעם הוא מתרחש בשקיעה, כשהשמש תלויה ממש מעל האופק המערבי.',
       es:'Es una alineación única en la vida para España — el último eclipse total visible desde la península fue en 1905, y este ocurre al atardecer con el Sol justo sobre el horizonte oeste.'},
 
-    's2-eyebrow':{en:'02 · Where the eclipse is', he:'02 · איפה הליקוי', es:'02 · Dónde está el eclipse'},
+    's2-eyebrow':{en:'04 · Where the eclipse is', he:'04 · איפה הליקוי', es:'04 · Dónde está el eclipse'},
     's2-h2':{en:'The shadow crosses Spain northwest to southeast', he:'הצל חוצה את ספרד מצפון־מערב לדרום־מזרח', es:'La sombra cruza España de noroeste a sureste'},
     's2-p1':{
       en:'The Moon\'s umbra makes landfall in Galicia at ~20:26 and sweeps to the Balearics by ~20:33 — the whole country is crossed in about seven minutes. Inside the amber band the Sun goes fully dark for up to ~1 min 48 s near the centerline; near the edges, only seconds.',
@@ -584,24 +682,24 @@
       he:'מפה סכמטית (לא מדויקת מדידתית). רוחב הרצועה ≈ 290 ק״מ. בולטניה יושבת ~45 ק״מ צפונית לגבול — הפירנאים מפספסים את המופע בקצת, ובדיוק בגלל זה נוסעים דרומה.',
       es:'Mapa esquemático (no topográfico). Banda ≈ 290 km de ancho. Boltaña está a ~45 km al norte del límite — el Pirineo se queda justo fuera del espectáculo; exactamente por eso conduces al sur.'},
     'm-arrow':{en:'shadow 20:26 → 20:33', he:'הצל 20:26 ← 20:33', es:'sombra 20:26 → 20:33'},
-    'm-slimit':{en:'southern limit', he:'גבול דרומי', es:'límite sur'},
-    'm-nlimit':{en:'northern limit of totality', he:'הגבול הצפוני של הליקוי המלא', es:'límite norte de la totalidad'},
-    'm-center':{en:'centerline · longest totality', he:'קו מרכז · הליקוי הארוך ביותר', es:'línea central · máxima duración'},
+    'm-lg1':{en:'band of totality', he:'רצועת הליקוי המלא', es:'banda de totalidad'},
+    'm-nlimit':{en:'edge of the band', he:'גבול הרצועה', es:'borde de la banda'},
+    'm-center':{en:'centerline · longest', he:'קו המרכז · הכי ארוך', es:'línea central · lo más largo'},
     'm-a1':{en:'~135 km', he:'~135 ק״מ', es:'~135 km'},
     'c-cor':{en:'A Coruña', he:'לה קורוניה', es:'A Coruña'},
     'c-ovi':{en:'Oviedo', he:'אוביידו', es:'Oviedo'},
     'c-bil':{en:'Bilbao', he:'בילבאו', es:'Bilbao'},
     'c-bur':{en:'Burgos', he:'בורגוס', es:'Burgos'},
     'c-zar':{en:'Zaragoza', he:'סרגוסה', es:'Zaragoza'},
-    'c-hue':{en:'Huesca', he:'ווסקה', es:'Huesca'},
-    'c-lle':{en:'Lleida · 25s', he:'ייִדה · 25 שנ׳', es:'Lleida · 25s'},
+    'c-hue':{en:'Huesca', he:'אואסקה', es:'Huesca'},
+    'c-lle':{en:'Lleida · 25s', he:'ליידה · 25 שנ׳', es:'Lleida · 25s'},
     'c-val':{en:'Valencia', he:'ולנסיה', es:'Valencia'},
     'c-palma':{en:'Palma', he:'פאלמה', es:'Palma'},
     'c-mad':{en:'Madrid', he:'מדריד', es:'Madrid'},
     'c-buj':{en:'Bujaraloz ★ your seat', he:'בוחרלוס ★ המושב שלכם', es:'Bujaraloz ★ tu asiento'},
-    'c-bol':{en:'BOLTAÑA — you · outside!', he:'בולטניה — אתם · בחוץ!', es:'BOLTAÑA — tú · ¡fuera!'},
+    'c-bol':{en:'BOLTAÑA — you, outside', he:'בולטניה — אתם, בחוץ', es:'BOLTAÑA — tú, fuera'},
 
-    's3-eyebrow':{en:'03 · Where you should sit', he:'03 · איפה לשבת', es:'03 · Dónde sentarte'},
+    's3-eyebrow':{en:'05 · Where you should sit', he:'05 · איפה לשבת', es:'05 · Dónde sentarte'},
     's3-h2':{en:'Pick your seat: dead-flat western horizon, deep in the band', he:'בחרו מושב: אופק מערבי שטוח לחלוטין, עמוק בתוך הרצועה', es:'Elige tu asiento: horizonte oeste totalmente plano, bien dentro de la banda'},
     's3-p1':{
       en:'Two constraints decide everything. <strong>(1) Be inside the band</strong> — further from the northern edge means longer totality. <strong>(2) The Sun will be only ~5° high, bearing 285° (WNW)</strong> — half a fist at arm\'s length above the horizon. Any hill, ridge or building to your west hides the entire show, so leave the mountains: you need open steppe or a west-facing ridge with nothing beyond it.',
@@ -643,7 +741,7 @@
       he:'<strong>מה לא לעשות:</strong> להישאר בסוברארבה (99.5% ≠ ליקוי מלא) · לעצור בברבסטרו, מונסון או העיר ווסקה — הן יושבות <em>על</em> הקצה ממש, שם עמקי הירח הופכים את הליקוי המלא ללא־אמין · לצפות מעמק בפירנאים (שמש בגובה 5° מתה מאחורי ההרים). חצו את הגבול והמשיכו דרומה. היו חונים ויושבים עד <strong>19:00</strong>, וצפו לכבישים איטיים בדרך חזרה.',
       es:'<strong>No hagas esto:</strong> quedarte en el Sobrarbe (99,5% ≠ totalidad) · pararte en Barbastro, Monzón o Huesca capital — están <em>sobre</em> el mismo borde, donde los valles lunares hacen la totalidad poco fiable · mirar desde un valle pirenaico (el Sol a 5° muere tras el terreno). Cruza el límite y sigue hacia el sur. Aparcado y sentado a las <strong>19:00</strong>, y espera carreteras lentas de vuelta.'},
 
-    's4-eyebrow':{en:'04 · The evening, minute by minute', he:'04 · הערב, דקה אחר דקה', es:'04 · La tarde, minuto a minuto'},
+    's4-eyebrow':{en:'06 · The evening, minute by minute', he:'06 · הערב, דקה אחר דקה', es:'06 · La tarde, minuto a minuto'},
     's4-h2':{en:'Timeline for the Monegros seat', he:'ציר הזמן — מושב מונגרוס', es:'Cronología — asiento de los Monegros'},
     th1:{en:'Local time', he:'שעה מקומית', es:'Hora local'},
     th2:{en:'Event', he:'אירוע', es:'Evento'},
@@ -667,7 +765,7 @@
       he:'אם תישארו בבולטניה: חלקי בלבד, מקסימום ~99.5% ב־20:30, השמש שוקעת לקויה ~21:04 — וההרים כנראה יסתירו אפילו את זה. סעו.',
       es:'Si te quedas en Boltaña: solo parcial, máximo ~99,5% a las 20:30, el Sol se pone eclipsado ~21:04 — y las montañas probablemente taparán incluso eso. Conduce.'},
 
-    's5-eyebrow':{en:'05 · Sun · Moon · Earth', he:'05 · שמש · ירח · כדור הארץ', es:'05 · Sol · Luna · Tierra'},
+    's5-eyebrow':{en:'02 · Sun · Moon · Earth', he:'02 · שמש · ירח · כדור הארץ', es:'02 · Sol · Luna · Tierra'},
     's5-h2':{en:'Why this evening is special', he:'למה הערב הזה מיוחד', es:'Por qué esta tarde es especial'},
     's5-p1':{
       en:'At new Moon on 12 August the three bodies align exactly: the Moon slides between Earth and Sun and its cone-shaped shadow — the <strong>umbra</strong> — just reaches Earth\'s surface. Spain catches the very end of the shadow\'s track across the planet (Arctic → Greenland → Iceland → Iberia), which is why totality here happens at sunset with the Sun nearly on the horizon.',
@@ -684,7 +782,7 @@
     'g-umbra':{en:'umbra → totality', he:'אומברה ← ליקוי מלא', es:'umbra → totalidad'},
     'g-pen':{en:'penumbra → partial (Boltaña)', he:'פנומברה ← חלקי (בולטניה)', es:'penumbra → parcial (Boltaña)'},
 
-    's6-eyebrow':{en:'06 · Simulation', he:'06 · הדמיה', es:'06 · Simulación'},
+    's6-eyebrow':{en:'07 · Simulation', he:'07 · הדמיה', es:'07 · Simulación'},
     's6-h2':{en:'How it will look from your seat', he:'כך זה ייראה מהמושב שלכם', es:'Así se verá desde tu asiento'},
     's6-p1':{
       en:'Facing west-northwest from the Monegros steppe. Drag the slider or press play to run the evening — watch the light die in the final minute before 20:30. (Schematic rendering; the real thing is better.)',
@@ -693,7 +791,7 @@
     'ro-cov':{en:'☉ covered', he:'☉ מכוסה', es:'☉ cubierto'},
     'ro-alt':{en:'alt', he:'גובה', es:'alt'},
 
-    's7-eyebrow':{en:'07 · Safety &amp; kit', he:'07 · בטיחות וציוד', es:'07 · Seguridad y equipo'},
+    's7-eyebrow':{en:'08 · Safety &amp; kit', he:'08 · בטיחות וציוד', es:'08 · Seguridad y equipo'},
     's7-h2':{en:'Protect your eyes — one exception only', he:'הגנו על העיניים — חריג אחד בלבד', es:'Protege tus ojos — una sola excepción'},
     's7-call':{
       en:'<strong>Certified eclipse glasses (ISO 12312-2) for every partial phase</strong> — that\'s all of 19:37→20:30 and 20:31→sunset. Sunglasses, phone screens and exposed film do not count. The <em>only</em> time it is safe to look with naked eyes is the ~1 minute of totality itself. When the diamond ring reappears, glasses go back on instantly.',
@@ -733,7 +831,39 @@
     'lnk-dir3':{en:'🚗 Directions', he:'🚗 הוראות הגעה', es:'🚗 Cómo llegar'},
     'lnk-view':{en:'View on map', he:'הצג במפה', es:'Ver en el mapa'},
     'lnk-view2':{en:'View on map', he:'הצג במפה', es:'Ver en el mapa'},
-    'lnk-view3':{en:'View on map', he:'הצג במפה', es:'Ver en el mapa'}
+    'lnk-view3':{en:'View on map', he:'הצג במפה', es:'Ver en el mapa'},
+
+    's0-eyebrow':{en:'01 · Where on Earth', he:'01 · איפה בעולם רואים את זה', es:'01 · Dónde se ve en el mundo'},
+    's0-h2':{en:'From home you would have seen nothing at all', he:'מהבית לא הייתם רואים כלום', es:'Desde casa no habrías visto nada'},
+    's0-p1':{
+      en:'The Moon\'s shadow touches only a narrow ribbon of the planet. On 12 August 2026 that ribbon runs from the Arctic across eastern Greenland and western Iceland, down the Atlantic, and makes landfall in northern Spain right at sunset — where it runs out of daylight and the eclipse ends.',
+      he:'צל הירח נוגע רק ברצועה צרה של כדור הארץ. ב־12 באוגוסט 2026 הרצועה הזו עוברת מהקוטב הצפוני דרך מזרח גרינלנד ומערב איסלנד, יורדת באוקיינוס האטלנטי, ופוגעת ביבשה בצפון ספרד בדיוק בשקיעה — שם נגמר לה האור והליקוי מסתיים.',
+      es:'La sombra de la Luna solo toca una franja estrecha del planeta. El 12 de agosto de 2026 esa franja va del Ártico a través del este de Groenlandia y el oeste de Islandia, baja por el Atlántico y toca tierra en el norte de España justo al atardecer — donde se le acaba la luz y el eclipse termina.'},
+    's0-p2':{
+      en:'Israel is on the wrong side of the planet for it. By the time totality reaches Spain at 20:30, it is <strong>21:30 in Tel Aviv and the Sun set two hours earlier</strong> — the eclipse is not visible from Israel at all, not even as a partial. Being in Spain this week is the whole opportunity.',
+      he:'ישראל נמצאת בצד הלא נכון של הפלנטה בשביל זה. כשהליקוי המלא מגיע לספרד ב־20:30, השעה בתל אביב היא <strong>21:30 והשמש שקעה שעתיים קודם</strong> — הליקוי לא נראה מישראל בכלל, אפילו לא כליקוי חלקי. זה שאתם בספרד השבוע — זו כל ההזדמנות.',
+      es:'Israel está en el lado equivocado del planeta. Cuando la totalidad llega a España a las 20:30, en Tel Aviv son las <strong>21:30 y el Sol se puso dos horas antes</strong> — el eclipse no se ve desde Israel en absoluto, ni siquiera como parcial. Estar en España esta semana es toda la oportunidad.'},
+    's0-cap':{
+      en:'Positions at 20:30 Spanish time (18:30 UTC), the moment of totality over Aragón. The amber band is drawn slightly wide to stay visible — in reality it is only about 290 km across. East of the dashed line the Sun has already set.',
+      he:'המצב ב־20:30 שעון ספרד (18:30 UTC), רגע הליקוי המלא מעל אראגון. הרצועה הכתומה מצוירת רחבה מעט מהמציאות כדי שתהיה נראית — בפועל רוחבה כ־290 ק״מ בלבד. ממזרח לקו המקווקו השמש כבר שקעה.',
+      es:'Posiciones a las 20:30 hora española (18:30 UTC), el momento de la totalidad sobre Aragón. La banda ámbar está dibujada algo más ancha para que se vea — en realidad mide unos 290 km. Al este de la línea discontinua el Sol ya se ha puesto.'},
+    g1:{en:'When', he:'מתי', es:'Cuándo'},
+    g1s:{en:'20:30 Spain · 21:30 Israel', he:'20:30 בספרד · 21:30 בישראל', es:'20:30 España · 21:30 Israel'},
+    g2:{en:'Totality crosses', he:'הליקוי המלא חוצה', es:'La totalidad cruza'},
+    g2v:{en:'Greenland · Iceland · N. Spain', he:'גרינלנד · איסלנד · צפון ספרד', es:'Groenlandia · Islandia · N. de España'},
+    g3:{en:'Last one over Spain', he:'הפעם הקודמת בספרד', es:'El anterior sobre España'},
+    g3s:{en:'121 years ago', he:'לפני 121 שנה', es:'hace 121 años'},
+    g4:{en:'Next one over Spain', he:'הפעם הבאה בספרד', es:'El siguiente sobre España'},
+    g4s:{en:'2 Aug, the far south', he:'2 באוגוסט, בדרום הרחוק', es:'2 de agosto, el extremo sur'},
+    'g2-greenland':{en:'Greenland', he:'גרינלנד', es:'Groenlandia'},
+    'g2-iceland':{en:'Iceland', he:'איסלנד', es:'Islandia'},
+    'g2-paris':{en:'Paris', he:'פריז', es:'París'},
+    'g2-rome':{en:'Rome', he:'רומא', es:'Roma'},
+    'g2-spain':{en:'N. Spain ★ you', he:'צפון ספרד ★ אתם', es:'N. de España ★ tú'},
+    'g2-israel':{en:'Israel ✗ nothing', he:'ישראל ✗ לא נראה', es:'Israel ✗ nada'},
+    'g2-night':{en:'already night here', he:'כאן כבר לילה', es:'aquí ya es de noche'},
+    'g2-lg1':{en:'total eclipse', he:'ליקוי מלא', es:'eclipse total'},
+    'g2-lg2':{en:'sunset line', he:'קו השקיעה', es:'línea del ocaso'}
   };
   var GEO = {
     locating:{en:'Locating…', he:'מאתר…', es:'Localizando…'},
@@ -773,19 +903,35 @@
     play:{en:'▶ Play', he:'▶ הפעלה', es:'▶ Reproducir'},
     pause:{en:'❚❚ Pause', he:'❚❚ השהיה', es:'❚❚ Pausa'},
     now:{en:'NOW', he:'עכשיו!', es:'¡AHORA!'},
-    days:{en:'d', he:'ימ׳', es:'d'},
+    days:{en:'days', he:'ימים', es:'días'},
     totality:{en:'TOTALITY', he:'ליקוי מלא', es:'TOTALIDAD'},
     wnw:{en:'WNW · az 285°', he:'מערב־צפון־מערב · 285°', es:'ONO · az 285°'},
     planets:{en:'planets appear', he:'כוכבי לכת נראים', es:'aparecen los planetas'}
   };
 
-  var lang = 'he';
-  try{ lang = localStorage.getItem('eclipse-lang') || 'he'; }catch(e){}
-  if(!/^(he|es|en)$/.test(lang)) lang='he';
+  /* Language lives in the URL (?lang=he|es|en) so any view is shareable.
+     Precedence: URL → last choice → Hebrew. */
+  function normLang(v){ return /^(he|es|en)$/.test(v||'') ? v : null; }
+  function langFromUrl(){
+    var m=location.search.match(/[?&]lang=([A-Za-z]{2})/);
+    return m ? normLang(m[1].toLowerCase()) : null;
+  }
+  function writeUrl(l, push){
+    try{
+      var u=new URL(location.href);
+      if(u.searchParams.get('lang')===l) return;
+      u.searchParams.set('lang', l);
+      history[push?'pushState':'replaceState'](null, '', u.pathname+u.search+u.hash);
+    }catch(e){}
+  }
+  var lang = langFromUrl();
+  if(!lang){ try{ lang = normLang(localStorage.getItem('eclipse-lang')); }catch(e){} }
+  if(!lang) lang = 'he';
 
-  function applyLang(l){
+  function applyLang(l, push){
     lang=l;
     try{ localStorage.setItem('eclipse-lang', l); }catch(e){}
+    writeUrl(l, push);
     document.documentElement.lang = l;
     document.documentElement.dir = (l==='he') ? 'rtl' : 'ltr';
     var nodes=document.querySelectorAll('[data-i18n]');
@@ -803,8 +949,12 @@
       var k3=pnodes[p].getAttribute('data-i18n-ph');
       if(I18N[k3] && I18N[k3][l]!=null) pnodes[p].placeholder=I18N[k3][l];
     }
-    var btns=document.querySelectorAll('.langbar button');
-    for(var b=0;b<btns.length;b++) btns[b].classList.toggle('on', btns[b].getAttribute('data-lang')===l);
+    var btns=document.querySelectorAll('.langbar a');
+    for(var b=0;b<btns.length;b++){
+      var on = btns[b].getAttribute('data-lang')===l;
+      btns[b].classList.toggle('on', on);
+      if(on) btns[b].setAttribute('aria-current','true'); else btns[b].removeAttribute('aria-current');
+    }
     syncSim();
     if(lastFix) renderGeo(lastFix.lat, lastFix.lon);
   }
@@ -817,7 +967,7 @@
     var d = T0 - Date.now();
     if(d<=0){ cdEl.textContent=UI.now[lang]; return; }
     var s=Math.floor(d/1000), dd=Math.floor(s/86400), hh=Math.floor(s%86400/3600), mm=Math.floor(s%3600/60), ss=s%60;
-    cdEl.textContent = dd+UI.days[lang]+' '+pad(hh)+':'+pad(mm)+':'+pad(ss);
+    cdEl.innerHTML = '<span class="cd-d">'+dd+' '+UI.days[lang]+'</span> '+pad(hh)+':'+pad(mm)+':'+pad(ss);
     setTimeout(tick, 1000);
   }
 
@@ -976,8 +1126,14 @@
     stop(); tCur=slider.value/1000*T_END; draw(tCur);
   });
   document.querySelector('.langbar').addEventListener('click',function(e){
-    var t=e.target.closest('button[data-lang]');
-    if(t) applyLang(t.getAttribute('data-lang'));
+    var t=e.target.closest('a[data-lang]');
+    if(!t) return;
+    if(e.metaKey||e.ctrlKey||e.shiftKey||e.button) return;  // let "open in new tab" work
+    e.preventDefault();                  // swap in place; the href keeps the link copyable
+    applyLang(t.getAttribute('data-lang'), true);
+  });
+  window.addEventListener('popstate', function(){
+    applyLang(langFromUrl() || 'he', false);
   });
 
   /* ═══ Where is the band? ═══
@@ -1098,7 +1254,7 @@
   geocheck.addEventListener('click', runCheck);
   geoinput.addEventListener('keydown', function(e){ if(e.key==='Enter') runCheck(); });
 
-  applyLang(lang);
+  applyLang(lang, false);              // normalises a bare URL → ?lang=he
   tick();
 })();
 </script>
