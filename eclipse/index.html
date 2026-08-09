@@ -139,6 +139,12 @@
 
   /* ─── Simulator ─── */
   .sim{border:1px solid var(--line); background:#05060B; padding:0}
+  [hidden]{display:none !important}
+  .spoiler{border:1px dashed var(--line); background:var(--panel); padding:26px 24px; text-align:center}
+  .spoiler button{font-family:var(--sans); font-size:15px; font-weight:600; background:none;
+    border:1px solid var(--solar-deep); color:var(--solar); padding:12px 24px; cursor:pointer}
+  .spoiler button:hover{background:var(--solar); color:#171004}
+  .spoiler p{max-width:52ch; margin:14px auto 0; font-size:14px; color:var(--faint)}
   #skycv{display:block; width:100%; height:auto}
   .sim-controls{display:flex; gap:16px; align-items:center; padding:16px 18px;
     border-top:1px solid var(--line); flex-wrap:wrap; direction:ltr}
@@ -309,6 +315,15 @@
   the Sun reappears.</p>
 </div></div>
 
+
+
+
+
+
+
+
+
+
 <section id="globe"><div class="wrap">
   <p class="eyebrow" data-i18n="s0-eyebrow">01 · Where on Earth</p>
   <h2 data-i18n="s0-h2">From home you would have seen nothing at all</h2>
@@ -382,14 +397,12 @@
     </svg>
     <div class="figcap" data-i18n="s0-cap">Positions at {{u1830|ES}} Spanish time (18:30 UTC), the moment of totality over Aragón. The amber band is drawn slightly wide to stay visible — in reality it is only about 290 km across. East of the dashed line the Sun has already set.</div>
   </div>
-
   <div class="strip strip-flat strip-3">
     <div><div class="k" data-i18n="g1">When</div><div class="v"><span class="num">12.8.2026</span> <small data-i18n="g1s">20:30 Spain · 21:30 Israel</small></div></div>
     <div><div class="k" data-i18n="g2">Totality crosses</div><div class="v" data-i18n="g2v">Greenland · Iceland · N. Spain</div></div>
     <div><div class="k" data-i18n="g3">Last one over Spain</div><div class="v"><span class="num">1905</span> <small data-i18n="g3s">121 years ago</small></div></div>
   </div>
 </div></section>
-
 <section id="geometry"><div class="wrap">
   <p class="eyebrow" data-i18n="s5-eyebrow">02 · Sun · Moon · Earth</p>
   <h2 data-i18n="s5-h2">Why this evening is special</h2>
@@ -429,37 +442,8 @@
     <div class="figcap" data-i18n="s5-cap">Not to scale. Inside the dark umbra cone you see totality; in the wide penumbra (where Boltaña sits) only a partial eclipse. The umbra's footprint on the ground is the ~290 km amber band on the map.</div>
   </div>
 </div></section>
-
-<section id="problem"><div class="wrap">
-  <p class="eyebrow" data-i18n="s1-eyebrow">03 · The problem</p>
-  <h2 data-i18n="s1-h2">You are about 45 km too far north</h2>
-  <p data-i18n="s1-p1">Your pin puts you at <strong>Boltaña / Aínsa in the Sobrarbe</strong>, high in the Pyrenees — and the
-  <em>northern</em> limit of totality passes south of you, roughly through Huesca city toward Lleida.
-  From your valley the Moon will cover <strong>~99.5% of the Sun</strong> — and that is still a completely
-  different event from 100%. No corona, no stars, no darkness. Totality is binary: inside the band or you missed it.</p>
-  <div class="callout">
-    <p data-i18n="s1-call"><strong>The fix:</strong> drive south, out of the mountains and into the Ebro plains. About
-    1½–2 hours puts you deep inside the band on the flat Monegros steppe — which also solves your second
-    problem: a Sun only 5° high needs a table-flat western horizon, and a Pyrenean valley can't give you that.</p>
-  </div>
-  <p class="muted" data-i18n="s1-p2">This is a once-in-a-lifetime alignment for Spain — the last total eclipse visible from the
-  peninsula was in 1905, and this one happens at sunset with the Sun hanging just over the western horizon.</p>
-
-  <div class="geo">
-    <p style="margin:0 0 14px" data-i18n="geo-lead"><strong>Check any spot:</strong> use your device location, or paste a Google Maps
-    link / coordinates for where you plan to be on eclipse day.</p>
-    <div class="geo-row">
-      <button type="button" id="geobtn" data-i18n="geo-btn">📍 Use my location</button>
-      <input type="text" id="geoinput" inputmode="text" data-i18n-ph="geo-ph"
-             placeholder="Paste Google Maps link or 42.4351, 0.0808">
-      <button type="button" id="geocheck" class="ghost" data-i18n="geo-check">Check</button>
-    </div>
-    <div class="geo-out" id="geoout" data-i18n="geo-idle">Everything is computed in your browser — no location data is sent anywhere.</div>
-  </div>
-</div></section>
-
 <section id="map"><div class="wrap">
-  <p class="eyebrow" data-i18n="s2-eyebrow">04 · Where the eclipse is</p>
+  <p class="eyebrow" data-i18n="s2-eyebrow">03 · Where the eclipse is</p>
   <h2 data-i18n="s2-h2">The shadow crosses Spain northwest to southeast</h2>
   <p data-i18n="s2-p1">The Moon's umbra makes landfall in Galicia at ~{{u1826}} and sweeps to the Balearics by ~{{u1833}} —
   the whole country is crossed in about seven minutes. Inside the amber band the Sun goes fully dark for up
@@ -529,15 +513,49 @@
     <div class="figcap" data-i18n="s2-cap">Schematic map (not survey-accurate). Band ≈ 290 km wide. Boltaña sits ~45 km north of the northern limit — the Pyrenees just miss the show, which is exactly why you drive south.</div>
   </div>
 </div></section>
-
+<section id="sim"><div class="wrap">
+  <p class="eyebrow" data-i18n="s6-eyebrow">04 · Spoiler · simulation</p>
+  <h2 data-i18n="s6-h2">How it will look from your seat</h2>
+  <p data-i18n="s6-p1">Facing west-northwest from the Monegros steppe. Drag the slider or press play to run the evening —
+  watch the light die in the final minute before {{u1830}}. (Schematic rendering; the real thing is better.)</p>
+  <div class="spoiler" id="spoilerGate">
+    <button type="button" id="spoilerBtn" data-i18n="spoiler-btn">👁 Spoiler — show the simulation</button>
+    <p data-i18n="spoiler-note">Seeing it first on a screen takes something away from the real minute. Open this only if you want a preview.</p>
+  </div>
+  <div class="sim" id="simBox" hidden>
+    <canvas id="skycv" width="1200" height="600" aria-label="Animated simulation of the eclipse over a flat horizon"></canvas>
+    <div class="sim-controls">
+      <button id="playbtn" type="button">▶ Play</button>
+      <input id="tslider" type="range" min="0" max="1000" value="0" aria-label="Time of evening">
+      <span class="readout">⏱ <b id="ro-time">19:30</b> · <span data-i18n="ro-cov">☉ covered</span> <b id="ro-cov">0%</b> · <span data-i18n="ro-alt">alt</span> <b id="ro-alt">15°</b></span>
+    </div>
+  </div>
+</div></section>
+<section id="safety"><div class="wrap">
+  <p class="eyebrow" data-i18n="s7-eyebrow">05 · Safety &amp; kit</p>
+  <h2 data-i18n="s7-h2">Protect your eyes — one exception only</h2>
+  <div class="callout red">
+    <p data-i18n="s7-call"><strong>Certified eclipse glasses (ISO 12312-2) for every partial phase</strong> — that's all of
+    {{u1737}}→{{u1830}} and {{u1831}}→sunset. Sunglasses, phone screens and exposed film do not count.
+    The <em>only</em> time it is safe to look with naked eyes is the ~1 minute of totality itself.
+    When the diamond ring reappears, glasses go back on instantly.</p>
+  </div>
+  <ul class="check">
+    <li data-i18n="chk1">Eclipse glasses for everyone in the car — buy them in Aínsa or Barbastro <em>tomorrow</em>; pharmacies and opticians are selling out.</li>
+    <li data-i18n="chk2">Leave Boltaña by ~{{u1430}}–{{u1500}}. Mountain roads plus eclipse traffic — give yourself margin, arrive by {{u1700}}.</li>
+    <li data-i18n="chk3">Seat check on arrival: face 285° WNW, hold half a fist at arm's length — the Sun must clear everything on the horizon at that height.</li>
+    <li data-i18n="chk4">Water, snacks, layers (temperature drops noticeably near totality), headlamp for the drive back.</li>
+    <li data-i18n="chk5">Phone: shoot the horizon and the people, not the Sun. Your eyes get the corona; cameras without solar filters get damaged.</li>
+    <li data-i18n="chk6">During totality: 10 seconds for photos, the rest for looking. Notice the 360° orange horizon and the planets.</li>
+  </ul>
+</div></section>
 <section id="seats"><div class="wrap">
-  <p class="eyebrow" data-i18n="s3-eyebrow">05 · Where you should sit</p>
+  <p class="eyebrow" data-i18n="s3-eyebrow">06 · Where you should sit</p>
   <h2 data-i18n="s3-h2">Pick your seat: dead-flat western horizon, deep in the band</h2>
   <p data-i18n="s3-p1">Two constraints decide everything. <strong>(1) Be inside the band</strong> — further from the northern
   edge means longer totality. <strong>(2) The Sun will be only ~5° high, bearing 285° (WNW)</strong> — half a fist
   at arm's length above the horizon. Any hill, ridge or building to your west hides the entire show, so leave
   the mountains: you need open steppe or a west-facing ridge with nothing beyond it.</p>
-
   <div class="seats">
     <div class="seat pick">
       <div class="dur">~1:10<small data-i18n="dur-l">totality</small></div>
@@ -579,7 +597,6 @@
       </div>
     </div>
   </div>
-
   <div class="callout red">
     <p data-i18n="s3-warn"><strong>Do not:</strong> stay in the Sobrarbe (99.5% ≠ totality) · stop at Barbastro, Monzón or
     Huesca city — they sit <em>on</em> the very edge, where lunar-valley effects make totality unreliable ·
@@ -587,9 +604,8 @@
     Be parked and seated by <strong>{{u1700}}</strong>, and expect slow roads home.</p>
   </div>
 </div></section>
-
 <section id="timeline"><div class="wrap">
-  <p class="eyebrow" data-i18n="s4-eyebrow">06 · The evening, minute by minute</p>
+  <p class="eyebrow" data-i18n="s4-eyebrow">07 · The evening, minute by minute</p>
   <h2 data-i18n="s4-h2">Timeline for the Monegros seat</h2>
   <div class="tzbar">
     <span class="tzlabel" data-i18n="tz-label">All times on this page:</span>
@@ -613,40 +629,31 @@
   </table></div>
   <p class="muted" style="margin-top:16px" data-i18n="s4-note">If you stayed in Boltaña: partial only, max ~99.5% at {{u1830}}, Sun sets eclipsed ~{{u1904}} — and the mountains will likely hide even that. Drive.</p>
 </div></section>
-
-
-<section id="sim"><div class="wrap">
-  <p class="eyebrow" data-i18n="s6-eyebrow">07 · Simulation</p>
-  <h2 data-i18n="s6-h2">How it will look from your seat</h2>
-  <p data-i18n="s6-p1">Facing west-northwest from the Monegros steppe. Drag the slider or press play to run the evening —
-  watch the light die in the final minute before {{u1830}}. (Schematic rendering; the real thing is better.)</p>
-  <div class="sim">
-    <canvas id="skycv" width="1200" height="600" aria-label="Animated simulation of the eclipse over a flat horizon"></canvas>
-    <div class="sim-controls">
-      <button id="playbtn" type="button">▶ Play</button>
-      <input id="tslider" type="range" min="0" max="1000" value="0" aria-label="Time of evening">
-      <span class="readout">⏱ <b id="ro-time">19:30</b> · <span data-i18n="ro-cov">☉ covered</span> <b id="ro-cov">0%</b> · <span data-i18n="ro-alt">alt</span> <b id="ro-alt">15°</b></span>
+<section id="problem"><div class="wrap">
+  <p class="eyebrow" data-i18n="s1-eyebrow">08 · The problem</p>
+  <h2 data-i18n="s1-h2">You are about 45 km too far north</h2>
+  <p data-i18n="s1-p1">Your pin puts you at <strong>Boltaña / Aínsa in the Sobrarbe</strong>, high in the Pyrenees — and the
+  <em>northern</em> limit of totality passes south of you, roughly through Huesca city toward Lleida.
+  From your valley the Moon will cover <strong>~99.5% of the Sun</strong> — and that is still a completely
+  different event from 100%. No corona, no stars, no darkness. Totality is binary: inside the band or you missed it.</p>
+  <div class="callout">
+    <p data-i18n="s1-call"><strong>The fix:</strong> drive south, out of the mountains and into the Ebro plains. About
+    1½–2 hours puts you deep inside the band on the flat Monegros steppe — which also solves your second
+    problem: a Sun only 5° high needs a table-flat western horizon, and a Pyrenean valley can't give you that.</p>
+  </div>
+  <p class="muted" data-i18n="s1-p2">This is a once-in-a-lifetime alignment for Spain — the last total eclipse visible from the
+  peninsula was in 1905, and this one happens at sunset with the Sun hanging just over the western horizon.</p>
+  <div class="geo">
+    <p style="margin:0 0 14px" data-i18n="geo-lead"><strong>Check any spot:</strong> use your device location, or paste a Google Maps
+    link / coordinates for where you plan to be on eclipse day.</p>
+    <div class="geo-row">
+      <button type="button" id="geobtn" data-i18n="geo-btn">📍 Use my location</button>
+      <input type="text" id="geoinput" inputmode="text" data-i18n-ph="geo-ph"
+             placeholder="Paste Google Maps link or 42.4351, 0.0808">
+      <button type="button" id="geocheck" class="ghost" data-i18n="geo-check">Check</button>
     </div>
+    <div class="geo-out" id="geoout" data-i18n="geo-idle">Everything is computed in your browser — no location data is sent anywhere.</div>
   </div>
-</div></section>
-
-<section id="safety"><div class="wrap">
-  <p class="eyebrow" data-i18n="s7-eyebrow">08 · Safety &amp; kit</p>
-  <h2 data-i18n="s7-h2">Protect your eyes — one exception only</h2>
-  <div class="callout red">
-    <p data-i18n="s7-call"><strong>Certified eclipse glasses (ISO 12312-2) for every partial phase</strong> — that's all of
-    {{u1737}}→{{u1830}} and {{u1831}}→sunset. Sunglasses, phone screens and exposed film do not count.
-    The <em>only</em> time it is safe to look with naked eyes is the ~1 minute of totality itself.
-    When the diamond ring reappears, glasses go back on instantly.</p>
-  </div>
-  <ul class="check">
-    <li data-i18n="chk1">Eclipse glasses for everyone in the car — buy them in Aínsa or Barbastro <em>tomorrow</em>; pharmacies and opticians are selling out.</li>
-    <li data-i18n="chk2">Leave Boltaña by ~{{u1430}}–{{u1500}}. Mountain roads plus eclipse traffic — give yourself margin, arrive by {{u1700}}.</li>
-    <li data-i18n="chk3">Seat check on arrival: face 285° WNW, hold half a fist at arm's length — the Sun must clear everything on the horizon at that height.</li>
-    <li data-i18n="chk4">Water, snacks, layers (temperature drops noticeably near totality), headlamp for the drive back.</li>
-    <li data-i18n="chk5">Phone: shoot the horizon and the people, not the Sun. Your eyes get the corona; cameras without solar filters get damaged.</li>
-    <li data-i18n="chk6">During totality: 10 seconds for photos, the rest for looking. Notice the 360° orange horizon and the planets.</li>
-  </ul>
 </div></section>
 
 <footer><div class="wrap">
@@ -684,7 +691,7 @@
     k5:{en:'Forecast (Monegros)', he:'תחזית (מונגרוס)', es:'Pronóstico (Monegros)'},
     v5s:{en:'cloud · 12 Aug eve', he:'עננות · ערב 12.8', es:'nubes · tarde 12 ago'},
 
-    's1-eyebrow':{en:'01 · The problem', he:'01 · הבעיה', es:'01 · El problema'},
+    's1-eyebrow':{en:'08 · The problem', he:'08 · הבעיה', es:'08 · El problema'},
     's1-h2':{en:'You are about 45 km too far north', he:'אתם כ־45 ק״מ צפונית מדי', es:'Estás unos 45 km demasiado al norte'},
     's1-p1':{
       en:'Your pin puts you at <strong>Boltaña / Aínsa in the Sobrarbe</strong>, high in the Pyrenees — and the <em>northern</em> limit of totality passes south of you, roughly through Huesca city toward Lleida. From your valley the Moon will cover <strong>~99.5% of the Sun</strong> — and that is still a completely different event from 100%. No corona, no stars, no darkness. Totality is binary: inside the band or you missed it.',
@@ -699,7 +706,7 @@
       he:'זהו מפגש של פעם בחיים עבור ספרד — הליקוי המלא האחרון שנראה מחצי האי היה ב־1905, והפעם הוא מתרחש בשקיעה, כשהשמש תלויה ממש מעל האופק המערבי.',
       es:'Es una alineación única en la vida para España — el último eclipse total visible desde la península fue en 1905, y este ocurre al atardecer con el Sol justo sobre el horizonte oeste.'},
 
-    's2-eyebrow':{en:'04 · Where the eclipse is', he:'04 · איפה הליקוי', es:'04 · Dónde está el eclipse'},
+    's2-eyebrow':{en:'03 · Where the eclipse is', he:'03 · איפה הליקוי', es:'03 · Dónde está el eclipse'},
     's2-h2':{en:'The shadow crosses Spain northwest to southeast', he:'הצל חוצה את ספרד מצפון־מערב לדרום־מזרח', es:'La sombra cruza España de noroeste a sureste'},
     's2-p1':{
       en:'The Moon\'s umbra makes landfall in Galicia at ~{{u1826}} and sweeps to the Balearics by ~{{u1833}} — the whole country is crossed in about seven minutes. Inside the amber band the Sun goes fully dark for up to ~1 min 48 s near the centerline; near the edges, only seconds.',
@@ -727,7 +734,7 @@
     'c-buj':{en:'Bujaraloz ★ your seat', he:'בוחרלוס ★ המושב שלכם', es:'Bujaraloz ★ tu asiento'},
     'c-bol':{en:'BOLTAÑA — you, outside', he:'בולטניה — אתם, בחוץ', es:'BOLTAÑA — tú, fuera'},
 
-    's3-eyebrow':{en:'05 · Where you should sit', he:'05 · איפה לשבת', es:'05 · Dónde sentarte'},
+    's3-eyebrow':{en:'06 · Where you should sit', he:'06 · איפה לשבת', es:'06 · Dónde sentarte'},
     's3-h2':{en:'Pick your seat: dead-flat western horizon, deep in the band', he:'בחרו מושב: אופק מערבי שטוח לחלוטין, עמוק בתוך הרצועה', es:'Elige tu asiento: horizonte oeste totalmente plano, bien dentro de la banda'},
     's3-p1':{
       en:'Two constraints decide everything. <strong>(1) Be inside the band</strong> — further from the northern edge means longer totality. <strong>(2) The Sun will be only ~5° high, bearing 285° (WNW)</strong> — half a fist at arm\'s length above the horizon. Any hill, ridge or building to your west hides the entire show, so leave the mountains: you need open steppe or a west-facing ridge with nothing beyond it.',
@@ -769,7 +776,7 @@
       he:'<strong>מה לא לעשות:</strong> להישאר בסוברארבה (99.5% ≠ ליקוי מלא) · לעצור בברבסטרו, מונסון או העיר ווסקה — הן יושבות <em>על</em> הקצה ממש, שם עמקי הירח הופכים את הליקוי המלא ללא־אמין · לצפות מעמק בפירנאים (שמש בגובה 5° מתה מאחורי ההרים). חצו את הגבול והמשיכו דרומה. היו חונים ויושבים עד <strong>{{u1700}}</strong>, וצפו לכבישים איטיים בדרך חזרה.',
       es:'<strong>No hagas esto:</strong> quedarte en el Sobrarbe (99,5% ≠ totalidad) · pararte en Barbastro, Monzón o Huesca capital — están <em>sobre</em> el mismo borde, donde los valles lunares hacen la totalidad poco fiable · mirar desde un valle pirenaico (el Sol a 5° muere tras el terreno). Cruza el límite y sigue hacia el sur. Aparcado y sentado a las <strong>{{u1700}}</strong>, y espera carreteras lentas de vuelta.'},
 
-    's4-eyebrow':{en:'06 · The evening, minute by minute', he:'06 · הערב, דקה אחר דקה', es:'06 · La tarde, minuto a minuto'},
+    's4-eyebrow':{en:'07 · The evening, minute by minute', he:'07 · הערב, דקה אחר דקה', es:'07 · La tarde, minuto a minuto'},
     's4-h2':{en:'Timeline for the Monegros seat', he:'ציר הזמן — מושב מונגרוס', es:'Cronología — asiento de los Monegros'},
     th1:{en:'Local time', he:'שעה מקומית', es:'Hora local'},
     th2:{en:'Event', he:'אירוע', es:'Evento'},
@@ -813,7 +820,7 @@
     'g-umbra':{en:'umbra → totality', he:'אומברה ← ליקוי מלא', es:'umbra → totalidad'},
     'g-pen':{en:'penumbra → partial (Boltaña)', he:'פנומברה ← חלקי (בולטניה)', es:'penumbra → parcial (Boltaña)'},
 
-    's6-eyebrow':{en:'07 · Simulation', he:'07 · הדמיה', es:'07 · Simulación'},
+    's6-eyebrow':{en:'04 · Spoiler · simulation', he:'04 · ספוילר · הדמיה', es:'04 · Spoiler · simulación'},
     's6-h2':{en:'How it will look from your seat', he:'כך זה ייראה מהמושב שלכם', es:'Así se verá desde tu asiento'},
     's6-p1':{
       en:'Facing west-northwest from the Monegros steppe. Drag the slider or press play to run the evening — watch the light die in the final minute before {{u1830}}. (Schematic rendering; the real thing is better.)',
@@ -822,7 +829,7 @@
     'ro-cov':{en:'☉ covered', he:'☉ מכוסה', es:'☉ cubierto'},
     'ro-alt':{en:'alt', he:'גובה', es:'alt'},
 
-    's7-eyebrow':{en:'08 · Safety &amp; kit', he:'08 · בטיחות וציוד', es:'08 · Seguridad y equipo'},
+    's7-eyebrow':{en:'05 · Safety &amp; kit', he:'05 · בטיחות וציוד', es:'05 · Seguridad y equipo'},
     's7-h2':{en:'Protect your eyes — one exception only', he:'הגנו על העיניים — חריג אחד בלבד', es:'Protege tus ojos — una sola excepción'},
     's7-call':{
       en:'<strong>Staring at a partially eclipsed Sun can blind you permanently.</strong> The retina has no pain receptors, so the burn happens silently and you may only notice the damage hours later, when it is already done. Everyone needs certified <strong>ISO 12312-2</strong> eclipse glasses for every partial phase — all of {{u1737}}→{{u1830}} and {{u1831}}→sunset. Sunglasses, two pairs of sunglasses, phone screens, exposed film and smoked glass are <em>not</em> protection. Never look through a camera, binoculars or a telescope without a proper solar filter — they concentrate the light and can injure you instantly, even if you are wearing eclipse glasses. The <em>only</em> safe moment for naked eyes is the ~1 minute of totality itself.',
@@ -892,6 +899,11 @@
     'tz-label':{en:'All times on this page:', he:'כל השעות בעמוד:', es:'Todas las horas de esta página:'},
     'tz-es':{en:'Spain time', he:'שעון ספרד', es:'Hora de España'},
     'tz-mine':{en:'My device', he:'השעון שלי', es:'Mi dispositivo'},
+    'spoiler-btn':{en:'👁 Spoiler — show the simulation', he:'👁 ספוילר — הצג את ההדמיה', es:'👁 Spoiler — mostrar la simulación'},
+    'spoiler-note':{
+      en:'Seeing it first on a screen takes something away from the real minute. Open this only if you want a preview.',
+      he:'לראות את זה קודם על מסך גוזל משהו מהדקה האמיתית. פתחו רק אם אתם רוצים הצצה מראש.',
+      es:'Verlo antes en una pantalla le quita algo al minuto real. Ábrelo solo si quieres un adelanto.'},
     'warn-banner':{
       en:'<strong>⚠ Never look at the Sun without certified eclipse glasses.</strong> A partially eclipsed Sun burns the retina without any pain, and the blindness it causes can be permanent. Glasses come off <em>only</em> during the ~1 minute of full totality — and go straight back on the instant the Sun reappears.',
       he:'<strong>⚠ לעולם אל תסתכלו על השמש בלי משקפי ליקוי תקניים.</strong> שמש בליקוי חלקי שורפת את הרשתית בלי שום כאב, והעיוורון שהיא גורמת עלול להיות בלתי הפיך. מורידים את המשקפיים <em>רק</em> בדקה של הליקוי המלא — ומחזירים אותם מיד ברגע שהשמש חוזרת.',
@@ -1224,6 +1236,15 @@
   window.addEventListener('popstate', function(){
     applyLang(langFromUrl() || 'he', false);
   });
+  var spoilerBtn=document.getElementById('spoilerBtn');
+  if(spoilerBtn) spoilerBtn.addEventListener('click', function(){
+    document.getElementById('spoilerGate').hidden=true;
+    var box=document.getElementById('simBox');
+    box.hidden=false;
+    draw(tCur);                       // canvas was never painted while hidden on some browsers
+    box.scrollIntoView({block:'nearest'});
+  });
+
   var tzbar=document.querySelector('.tzbar');
   if(tzbar) tzbar.addEventListener('click', function(e){
     var t=e.target.closest('button[data-tz]');
