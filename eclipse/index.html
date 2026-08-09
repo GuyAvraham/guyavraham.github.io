@@ -219,6 +219,18 @@
   .geo-out .verdict.out{color:var(--danger)}
   .geo-out .verdict.in{color:var(--good)}
   .geo-out .coords{font-family:var(--mono); font-size:13px; color:var(--faint); direction:ltr; unicode-bidi:isolate}
+  .geomap{margin:18px 0 0; padding:0; border:1px solid var(--line); background:var(--night)}
+  .geomap svg{display:block; width:100%; height:auto; direction:ltr}
+  .geokey{padding:11px 14px; border-top:1px solid var(--line); font-size:13.5px;
+    color:var(--muted); line-height:1.9; background:var(--panel)}
+  /* Drawn with borders rather than ●/◎ glyphs, which fall back unpredictably
+     once the Hebrew faces decline them. */
+  .geokey i{display:inline-block; width:10px; height:10px; border-radius:50%;
+    margin-inline-end:8px; vertical-align:1px}
+  .geokey i.k-you{background:var(--danger)}
+  .geokey i.k-edge{background:var(--solar)}
+  .geokey i.k-seat{background:none; border:2.5px solid var(--corona)}
+  .geokey b{color:var(--corona); font-weight:600}
 
   /* ─── Map links ─── */
   .links{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
@@ -922,6 +934,25 @@
       <button type="button" id="geocheck" class="ghost" data-i18n="geo-check">Check</button>
     </div>
     <div class="geo-out" id="geoout" data-i18n="geo-idle">Everything is computed in your browser — no location data is sent anywhere.</div>
+    <!-- Close-up of your own corner of the path, drawn once a location is known. -->
+    <figure class="geomap" id="geoFig" hidden>
+      <svg id="geoMap" viewBox="0 0 460 300" role="img" aria-label="Close-up map of your position, the nearest edge of the path of totality, and the recommended spot inside it">
+        <rect width="460" height="300" fill="#05060B"/>
+        <defs><clipPath id="geoClip"><rect x="0" y="0" width="460" height="300"/></clipPath></defs>
+        <g clip-path="url(#geoClip)"><g id="geoArt"><use href="#spainArt"/></g></g>
+        <path id="geoHop" fill="none" stroke="#E4604F" stroke-width="2" stroke-dasharray="5 4"/>
+        <path id="geoRun" fill="none" stroke="#F0EADB" stroke-width="1.6" stroke-dasharray="2 5" opacity=".75"/>
+        <circle id="geoEdge" r="5" fill="#F2A93B" stroke="#05060B" stroke-width="1.5"/>
+        <g id="geoSeat">
+          <circle id="geoSeatRing" r="9" fill="none" stroke="#F0EADB" stroke-width="2"/>
+          <circle id="geoSeatDot" r="3" fill="#F0EADB"/>
+        </g>
+        <circle id="geoYou" r="6" fill="#E4604F" stroke="#05060B" stroke-width="1.5"/>
+        <text id="geoHopTxt" font-size="17" font-weight="600" fill="#F2A93B" font-family="-apple-system,Segoe UI,Roboto,sans-serif"
+              stroke="#05060B" stroke-width="3.4" paint-order="stroke" stroke-linejoin="round"></text>
+      </svg>
+      <figcaption class="geokey" id="geoKey"></figcaption>
+    </figure>
   </div>
 </div></section>
 
@@ -1237,13 +1268,41 @@
     'p-edgy':{en:'on the edge — unreliable', he:'על הגבול — לא אמין', es:'en el borde — poco fiable'},
     'p-belowh':{en:'Sun already set', he:'השמש כבר שקעה', es:'el Sol ya se puso'},
     'p-altaz':{en:'alt · az {az}°', he:'גובה · אזימוט {az}°', es:'alt · az {az}°'},
-    'p-south':{en:'south', he:'דרומה', es:'al sur'},
-    'p-north':{en:'north', he:'צפונה', es:'al norte'},
+    'p-dir-n':{en:'north', he:'צפונה', es:'al norte'},
+    'p-dir-ne':{en:'north-east', he:'צפונה־מזרחה', es:'al noreste'},
+    'p-dir-e':{en:'east', he:'מזרחה', es:'al este'},
+    'p-dir-se':{en:'south-east', he:'דרומה־מזרחה', es:'al sureste'},
+    'p-dir-s':{en:'south', he:'דרומה', es:'al sur'},
+    'p-dir-sw':{en:'south-west', he:'דרומה־מערבה', es:'al suroeste'},
+    'p-dir-w':{en:'west', he:'מערבה', es:'al oeste'},
+    'p-dir-nw':{en:'north-west', he:'צפונה־מערבה', es:'al noroeste'},
     'p-southern':{en:'southern', he:'הדרומי', es:'sur'},
     'p-northern':{en:'northern', he:'הצפוני', es:'norte'},
     'p-you-pin':{en:'{n} — you', he:'{n} — אתם', es:'{n} — tú'},
     'p-seat-pin':{en:'★ go here', he:'★ לכאן', es:'★ ve aquí'},
     'p-fromyou':{en:'{d} km from you', he:'{d} ק״מ מכם', es:'a {d} km de ti'},
+    'p-hop':{en:'{d} km', he:'{d} ק״מ', es:'{d} km'},
+    'p-out':{
+      en:'The {edge} edge of the band is <b>{d} km</b> away at its closest. Head <b>{dir}</b> — the map below shows exactly where.',
+      he:'הקצה {edge} של הרצועה נמצא <b>{d} ק״מ</b> מכם בנקודה הקרובה ביותר. סעו <b>{dir}</b> — המפה למטה מראה בדיוק לאן.',
+      es:'El borde {edge} de la banda está a <b>{d} km</b> en su punto más cercano. Ve <b>{dir}</b> — el mapa de abajo enseña exactamente dónde.'},
+    'p-key-you':{en:'You, near <b>{n}</b>', he:'אתם, ליד <b>{n}</b>', es:'Tú, cerca de <b>{n}</b>'},
+    'p-key-edge':{
+      en:'Closest point of the band — <b>{d} km</b> {dir}. Totality is about zero seconds right on the line.',
+      he:'הנקודה הקרובה ביותר ברצועה — <b>{d} ק״מ</b> {dir}. בדיוק על הקו הליקוי המלא נמשך אפס שניות.',
+      es:'El punto más cercano de la banda — <b>{d} km</b> {dir}. Justo sobre la línea la totalidad dura cero segundos.'},
+    'p-key-edge-in':{
+      en:'Nearest edge of the band — <b>{d} km</b> {dir}. That is your margin; stay on this side of it.',
+      he:'הקצה הקרוב ביותר של הרצועה — <b>{d} ק״מ</b> {dir}. זה המרווח שלכם; הישארו בצד הזה שלו.',
+      es:'El borde más cercano de la banda — <b>{d} km</b> {dir}. Ese es tu margen; quédate de este lado.'},
+    'p-key-seat':{
+      en:'Where to actually stand — <b>{d} km</b>, deep enough in for about <b>{dur}</b> of totality.',
+      he:'איפה באמת כדאי לעמוד — <b>{d} ק״מ</b>, עמוק מספיק בפנים בשביל בערך <b>{dur}</b> של ליקוי מלא.',
+      es:'Dónde ponerse de verdad — <b>{d} km</b>, lo bastante dentro para unos <b>{dur}</b> de totalidad.'},
+    'p-key-seat-here':{
+      en:'You are already deep enough in — about <b>{dur}</b> of totality right where you are.',
+      he:'אתם כבר עמוק מספיק בפנים — בערך <b>{dur}</b> של ליקוי מלא בדיוק במקום שאתם בו.',
+      es:'Ya estás lo bastante dentro — unos <b>{dur}</b> de totalidad justo donde estás.'},
 
     'p-h2-n':{en:'You are about {d} km too far north',
               he:'אתם בערך {d} ק״מ צפונה מדי',
@@ -1718,6 +1777,42 @@
   }
   function mmss(sec){ return Math.floor(sec/60)+':'+(sec%60<10?'0':'')+(sec%60); }
 
+  /* The band runs WNW→ESE, so the nearest edge is almost never due south of you.
+     Everything below works in a local flat km frame, which is plenty over ~300 km. */
+  function kx(lat){ return Math.cos(lat*DEG)*KM_DEG; }
+  function closestOnSeg(lat,lon, a1,o1, a2,o2){
+    var mx=kx(lat), my=KM_DEG;
+    var px=(lon-o1)*mx, py=(lat-a1)*my;
+    var vx=(o2-o1)*mx, vy=(a2-a1)*my;
+    var L=vx*vx+vy*vy, t=L?(px*vx+py*vy)/L:0;
+    t=Math.max(0,Math.min(1,t));
+    var cx=vx*t, cy=vy*t;
+    return {lat:a1+cy/my, lon:o1+cx/mx, km:Math.sqrt((px-cx)*(px-cx)+(py-cy)*(py-cy))};
+  }
+  /* Closest point on either limit — the honest answer to "how far is the edge". */
+  function nearestOnBand(lat,lon){
+    var best=null;
+    [[LIM_N,'N'],[LIM_S,'S']].forEach(function(pair){
+      var line=pair[0];
+      for(var i=0;i<line.length-1;i++){
+        var p=closestOnSeg(lat,lon, line[i][1],line[i][0], line[i+1][1],line[i+1][0]);
+        if(!best || p.km<best.km){ p.limit=pair[1]; best=p; }
+      }
+    });
+    return best;
+  }
+  function bearingTo(a1,o1,a2,o2){
+    var mx=kx((a1+a2)/2);
+    return ((Math.atan2((o2-o1)*mx,(a2-a1)*KM_DEG)/DEG)+360)%360;
+  }
+  /* Step km along a bearing, staying in the same flat frame. */
+  function moveKm(lat,lon,brg,km){
+    var r=brg*DEG;
+    return {lat:lat+(km*Math.cos(r))/KM_DEG, lon:lon+(km*Math.sin(r))/kx(lat)};
+  }
+  var COMPASS=['n','ne','e','se','s','sw','w','nw'];
+  function compass8(brg){ return COMPASS[Math.round(((brg%360)+360)%360/45)%8]; }
+
   var INSET_KM=60;            // how deep inside the limit counts as a dependable seat
 
   function analyse(lat,lon){
@@ -1730,21 +1825,32 @@
     if(!c.onPath) return c;
     c.n=n; c.s=s;
     c.inside = (lat<=n && lat>=s);
-    if(lat>n){ c.side='N'; c.outKm=(lat-n)*KM_DEG; }
-    else if(lat<s){ c.side='S'; c.outKm=(s-lat)*KM_DEG; }
-    else { c.outKm=0; c.edgeKm=Math.min(n-lat,lat-s)*KM_DEG; }
+    c.side = lat>n ? 'N' : (lat<s ? 'S' : null);
+
+    /* Distances are measured perpendicular to the limit, not down a meridian —
+       a meridian cuts the diagonal band at an angle and overstates the gap. */
+    c.near = nearestOnBand(lat,lon);
+    c.edgeKm = c.near.km;
+    c.outKm = c.inside ? 0 : c.near.km;
     c.obsc = c.inside ? 1 : obscuration(c.outKm);
     c.dur  = c.inside ? durationAt(lat,lon,n,s) : 0;
-    // Where to go: the nearest latitude sitting a safe INSET_KM inside the band.
-    var inN=n-INSET_KM/KM_DEG, inS=s+INSET_KM/KM_DEG, tLat;
-    if(inN<inS) tLat=(n+s)/2;              // band narrower than two insets: take the middle
-    else if(lat>inN) tLat=inN;
-    else if(lat<inS) tLat=inS;
-    else tLat=lat;                          // already comfortably in
-    var tsp=solarPos(when,tLat,lon);
-    c.target={lat:tLat, lon:lon, km:Math.abs(tLat-lat)*KM_DEG,
-              dur:durationAt(tLat,lon,n,s), alt:tsp.alt, az:tsp.az,
-              dir:(tLat<lat ? 'S' : 'N')};
+
+    /* Where to go: cross the nearest edge and keep going INSET_KM, along the same
+       shortest line. Outside → walk toward the edge; inside → away from it. */
+    var toEdge=bearingTo(lat,lon,c.near.lat,c.near.lon), tgt;
+    if(!c.inside)            tgt=moveKm(lat,lon,toEdge, c.near.km+INSET_KM);
+    else if(c.edgeKm<INSET_KM) tgt=moveKm(lat,lon,toEdge+180, INSET_KM-c.edgeKm);
+    else                     tgt={lat:lat, lon:lon};
+    // A target that lands outside the band's other side means it is too narrow here.
+    var tn=limitAt(LIM_N,tgt.lon), ts=limitAt(LIM_S,tgt.lon);
+    if(tn===null||ts===null||tgt.lat>tn||tgt.lat<ts) tgt={lat:(n+s)/2, lon:lon};
+    var tLat=tgt.lat, tLon=tgt.lon;
+    var tsp=solarPos(when,tLat,tLon);
+    c.target={lat:tLat, lon:tLon,
+              km:haversine(lat,lon,tLat,tLon),
+              dur:durationAt(tLat,tLon,limitAt(LIM_N,tLon),limitAt(LIM_S,tLon)),
+              alt:tsp.alt, az:tsp.az,
+              dir:compass8(bearingTo(lat,lon,tLat,tLon))};
     /* Worth moving only if the drive buys something: any distance at all when you are
        outside or hugging an edge, but not 20 km for eight extra seconds of totality. */
     c.target.move = c.target.km>8 &&
@@ -1763,26 +1869,19 @@
       out.innerHTML='<span class="verdict out">'+GEO.outside[lang]+'</span>'+GEO.faraway[lang]+coords;
       return;
     }
-    var kmPerDeg=111.2, html;
-    if(lat>n){
+    /* Same analysis the rest of the page runs on, so the panel cannot disagree
+       with the map beneath it about how far away the band is or which way it lies. */
+    var c=analyse(lat, lon), edgeKm=Math.round(c.near.km), html;
+    var goDir=pz('p-dir-'+c.target.dir);
+    if(!c.inside){
       html='<span class="verdict out">'+GEO.outside[lang]+'</span>'+
-           GEO.outN[lang].replace('{d}', Math.round((lat-n)*kmPerDeg));
-    } else if(lat<s){
-      html='<span class="verdict out">'+GEO.outside[lang]+'</span>'+
-           GEO.outS[lang].replace('{d}', Math.round((s-lat)*kmPerDeg));
+           fill(pz('p-out'),{d:edgeKm, edge:pz(c.near.limit==='N'?'p-northern':'p-southern'), dir:goDir});
+    } else if(edgeKm<12){
+      html='<span class="verdict out">'+GEO.edge[lang]+'</span>'+
+           GEO.edgeTxt[lang].replace('{d}', edgeKm);
     } else {
-      var edgeKm=Math.round(Math.min(n-lat, lat-s)*kmPerDeg);
-      var f=(lat-s)/(n-s);                       // 0 = southern edge, 1 = northern edge
-      var peak=limitAt(MAXDUR, lon) || 90;
-      var secs=Math.round(peak*Math.sqrt(Math.max(0,1-Math.pow(2*f-1,2))));
-      if(edgeKm<12){
-        html='<span class="verdict out">'+GEO.edge[lang]+'</span>'+
-             GEO.edgeTxt[lang].replace('{d}', edgeKm);
-      } else {
-        var mmss=Math.floor(secs/60)+':'+(secs%60<10?'0':'')+(secs%60);
-        html='<span class="verdict in">'+GEO.inside[lang]+'</span>'+
-             GEO.inTxt[lang].replace('{s}', mmss).replace('{d}', edgeKm);
-      }
+      html='<span class="verdict in">'+GEO.inside[lang]+'</span>'+
+           GEO.inTxt[lang].replace('{s}', mmss(c.dur)).replace('{d}', edgeKm);
     }
     // Point every "Directions" link at this origin
     var dirs=document.querySelectorAll('.links a[data-dest]');
@@ -1872,6 +1971,61 @@
     }
   }
 
+  /* Close-up beside the verdict, framed on you, the nearest edge and the seat —
+     the section-03 map is the whole country and sits far up the page. */
+  function renderGeoMap(c){
+    var fig=el('geoFig'); if(!fig) return;
+    var you=mapXY(c.lat,c.lon);
+    if(!c.onPath || !onSheet(you)){ fig.setAttribute('hidden',''); return; }
+    fig.removeAttribute('hidden');
+    var edge=mapXY(c.near.lat,c.near.lon), seat=mapXY(c.target.lat,c.target.lon);
+    var pts=[you,edge,seat];
+    var W=460, H=300, minX=1e9,maxX=-1e9,minY=1e9,maxY=-1e9;
+    pts.forEach(function(p){ minX=Math.min(minX,p.x); maxX=Math.max(maxX,p.x);
+                             minY=Math.min(minY,p.y); maxY=Math.max(maxY,p.y); });
+    minX-=60; maxX+=60; minY-=44; maxY+=44;
+    var k=Math.max(1.1, Math.min(Math.min(W/(maxX-minX), H/(maxY-minY)), 4.5));
+    var tx=W/2-((minX+maxX)/2)*k, ty=H/2-((minY+maxY)/2)*k;
+    var at=function(p){ return {x:p.x*k+tx, y:p.y*k+ty}; };
+    el('geoArt').setAttribute('transform','translate('+tx.toFixed(2)+','+ty.toFixed(2)+') scale('+k.toFixed(4)+')');
+
+    var Y=at(you), E=at(edge), S=at(seat);
+    function put(id,p){ var n=el(id); n.setAttribute('cx',p.x.toFixed(1)); n.setAttribute('cy',p.y.toFixed(1)); }
+    put('geoYou',Y); put('geoEdge',E);
+    el('geoSeat').setAttribute('transform','translate('+S.x.toFixed(1)+','+S.y.toFixed(1)+')');
+    el('geoHop').setAttribute('d','M'+Y.x.toFixed(1)+','+Y.y.toFixed(1)+' L'+E.x.toFixed(1)+','+E.y.toFixed(1));
+    el('geoRun').setAttribute('d','M'+E.x.toFixed(1)+','+E.y.toFixed(1)+' L'+S.x.toFixed(1)+','+S.y.toFixed(1));
+
+    /* The distance sits beside the hop, pushed out along its perpendicular and away
+       from the seat marker — a fixed nudge kept landing it on top of the pins. */
+    var t=el('geoHopTxt'), mx=(Y.x+E.x)/2, my=(Y.y+E.y)/2;
+    var vx=E.x-Y.x, vy=E.y-Y.y, len=Math.sqrt(vx*vx+vy*vy)||1;
+    var nx=-vy/len, ny=vx/len;
+    if(mx+nx*34 < 90) { nx=-nx; ny=-ny; }                // keep it off the left gutter
+    var lx=mx+nx*34, ly=my+ny*34;
+    // Anchor on the far side, or the text runs straight back over the two pins.
+    var anchor = nx<0 ? 'end' : 'start';
+    lx=Math.max(12,Math.min(W-12,lx)); ly=Math.max(24,Math.min(H-12,ly));
+    t.setAttribute('x',lx.toFixed(1));
+    t.setAttribute('y',ly.toFixed(1));
+    t.setAttribute('text-anchor', anchor);
+    t.textContent=fill(pz('p-hop'),{d:Math.round(c.near.km)});
+
+    // Inside the band the edge is margin, not a destination — so it is worded, and
+    // drawn, differently from the "you must cross this" case.
+    var edgeDir=pz('p-dir-'+compass8(bearingTo(c.lat,c.lon,c.near.lat,c.near.lon)));
+    el('geoHop').setAttribute('stroke', c.inside ? '#828BA6' : '#E4604F');
+    if(c.target.move) el('geoSeat').removeAttribute('hidden'); else el('geoSeat').setAttribute('hidden','');
+    el('geoRun').setAttribute('opacity', c.target.move ? '.75' : '0');
+    el('geoKey').innerHTML=
+      '<i class="k-you"></i>'+fill(pz('p-key-you'),{n:c.place.name})+'<br>'+
+      '<i class="k-edge"></i>'+fill(pz(c.inside?'p-key-edge-in':'p-key-edge'),
+        {d:Math.round(c.near.km), dir:edgeDir})+'<br>'+
+      '<i class="k-seat"></i>'+(c.target.move
+        ? fill(pz('p-key-seat'),{d:Math.round(c.target.km), dur:mmss(c.target.dur)})
+        : fill(pz('p-key-seat-here'),{dur:mmss(c.dur)}));
+  }
+
   /* Off the schematic altogether — better a map with no "you" on it than one
      that still claims you are standing in the Pyrenees. */
   function showPins(on){
@@ -1904,6 +2058,7 @@
       el('pLead').innerHTML=fill(pz('p-lead-far'),{place:name, coords:coords});
       el('pFix').innerHTML=pz('p-fix-far');
       showPins(false);
+      renderGeoMap(c);
       seatDistances(c);
       return;
     }
@@ -1914,7 +2069,7 @@
                             : c.inside ? pz('p-total') : (I18N['v3s'][lang]||'');
 
     var d=Math.round(c.outKm), tkm=Math.round(c.target.km), talt=Math.round(c.target.alt);
-    var dir = c.target.dir==='S' ? pz('p-south') : pz('p-north');
+    var dir = pz('p-dir-'+c.target.dir);
     if(c.inside){
       var edge=Math.round(c.edgeKm);
       if(c.target.move){
@@ -1927,9 +2082,8 @@
       }
     } else {
       el('pH2').innerHTML=fill(c.side==='N'?pz('p-h2-n'):pz('p-h2-s'),{d:d});
-      // Standing north of the band means the band's *northern* limit is the near one.
       el('pLead').innerHTML=fill(pz('p-lead-out'),
-        {place:name, coords:coords, d:d, side:(c.side==='N'?pz('p-northern'):pz('p-southern')),
+        {place:name, coords:coords, d:d, side:(c.near.limit==='N'?pz('p-northern'):pz('p-southern')),
          obsc:(c.obsc*100).toFixed(1)});
     }
     if(c.target.move){
@@ -1951,6 +2105,7 @@
     } else {
       showPins(false);
     }
+    renderGeoMap(c);
     seatDistances(c);
   }
 
